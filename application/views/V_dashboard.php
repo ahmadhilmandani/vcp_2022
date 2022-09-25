@@ -31,7 +31,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 
 			<p>The corresponding controller for this page is found at:</p>
-			<code>application/controllers/Welcome.php</code>
+
 
 			<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="userguide3/">User Guide</a>.</p>
 		</div>
