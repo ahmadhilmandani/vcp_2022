@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:1109/vcp_2022/';
+$config['base_url'] = 'http://localhost/vcp_2022/';
 
 /*
 |--------------------------------------------------------------------------
