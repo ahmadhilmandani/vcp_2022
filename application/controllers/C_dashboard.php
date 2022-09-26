@@ -8,8 +8,7 @@ class C_dashboard extends CI_Controller
 	{
 		$data["judul"] = "Dashboard";
 		$this->load->view("templates/View_header", $data);
-		$this->load->view("templates/View_sidebar");
-		$this->load->view('View_dashboard');
+		$this->load->view("templates/View_sidebar_dashboard");
 		$this->load->view('templates/View_footer');
 	}
 }

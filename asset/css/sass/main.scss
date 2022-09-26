@@ -6,10 +6,10 @@ $info : #76ECF4;
 @import "../node_modules/bootstrap/scss/_variables";
 
 $custom-theme-color: (
-    "white-custom": #FAFAFA,
+    "white-custom": #fefefe,
     "grey-custom": #ADADAD,
     "grey-light-custom": #ECECEC,
-    "black-custom": #32353B,
+    "txt-black-custom": #32353B,
 );
 $theme-colors: map-merge($custom-theme-color, $theme-colors);
 
