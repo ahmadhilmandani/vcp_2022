@@ -20,7 +20,7 @@ else if (berandaKonten.getAttribute("data-click-sidebar") == "Ketiga") {
 else if (berandaKonten.getAttribute("data-click-sidebar") == "Keempat") {
     clickSidebar(4)
 }
-    
+
 
 
 function clickSidebar(parameterIndex) {
@@ -34,12 +34,12 @@ function clickSidebar(parameterIndex) {
 
 
     // MENGUBAH ELEMENT YANG TIDAK DI KLIK menjadi abu
-    for(let index = 0; index < sidebarDiv.length; index++) {
+    for (let index = 0; index < sidebarDiv.length; index++) {
         if (index != parameterIndex && (a[index].classList.contains("text-secondary") == true)) {
             sidebarDiv[index].classList.remove("border-5", "border-start", "border-primary");
             a[index].classList.replace("text-secondary", "text-grey-custom")
             a[index].classList.remove("fw-bold")
-            
+
             sidebarIcon[index].classList.replace("text-secondary", "text-grey-custom")
             sidebarIcon[index].classList.remove("fs-4")
         }
