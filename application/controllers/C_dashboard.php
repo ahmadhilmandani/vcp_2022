@@ -20,6 +20,7 @@ class C_dashboard extends CI_Controller
 		$data["vaksin_keberapa"] = $vaksin_keberapa;
 		$data["data_click_sidebar"] = $vaksin_keberapa;
 
+
 		if($vaksin_keberapa == "Pertama"){
 			$data["nama_vaksin"] = "sinovac";
 		}
@@ -31,6 +32,9 @@ class C_dashboard extends CI_Controller
 		}
 		else if($vaksin_keberapa == "Keempat"){
 			$data["nama_vaksin"] = "sinovac-4";
+		}
+		else{
+			$this->model->load();
 		}
 
 		$data['sidebar_user'] = $this->load->view('templates/user/View_sidebar_user', NULL, TRUE);
