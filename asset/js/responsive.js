@@ -6,9 +6,9 @@ const deleteElement = () => {
         offcanvas.classList.remove("offcanvas-md")
     }
     else {
-        offcanvas.classList.remove("offcanvas")      
-        offcanvas.classList.add("offcanvas-md")      
-  
+        offcanvas.classList.remove("offcanvas")
+        offcanvas.classList.add("offcanvas-md")
+
     }
 }
 console.log(offcanvas)
