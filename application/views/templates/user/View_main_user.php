@@ -1,4 +1,4 @@
-<?php if ($data_click_sidebar == 0) : ?>
+<?php if ($data_click_sidebar === 0) : ?>
     <div id="beranda-konten" data-click-sidebar="0">
         <h1 class="text-primary mb-4">Hai, Ahmad Hilman Dani</h1>
     </div>
@@ -10,7 +10,7 @@
     </div>
 
 <?php else : ?>
-    <div id="beranda-konten" data-click-sidebar="<?= $data_click_sidebar ?>">
+    <div id="beranda-konten" data-click-sidebar="<?= $data_click_sidebar ?>" onclick="clickSidebar(1)">
         <h1 class="text-primary">Vaksin <?= $vaksin_keberapa ?></h1>
     </div>
     <div class="w-75 h-auto p-4 bg-white border-1 border-grey-custom">
