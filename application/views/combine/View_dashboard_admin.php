@@ -24,4 +24,4 @@
 
 
 </section>
-<script src="<?= base_url("asset/js/sidebarToggle.js") ?>" ?></script>
+<script src="<?= base_url("asset/js/sidebarToggle.js?v.2") ?>" ?></script>

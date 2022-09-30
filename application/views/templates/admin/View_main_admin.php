@@ -1,4 +1,4 @@
-<?php if ($data_click_sidebar == 0) : ?>
+<?php if ($click_sidebar === 0) : ?>
     <div id="beranda-konten" data-click-sidebar="0">
         <h1 class="text-primary mb-4">Hai, Ahmad Hilman Dani</h1>
     </div>
@@ -10,11 +10,12 @@
     </div>
 
 <?php else : ?>
-    <div id="beranda-konten" data-click-sidebar="<?= $data_click_sidebar ?>" onclick="clickSidebar(1)">
-        <h1 class="text-primary">Vaksin <?= $vaksin_keberapa ?></h1>
+    <div id="beranda-konten" data-click-sidebar="<?= $click_sidebar ?>" onclick="clickSidebar(1)">
+        <h1 class="text-primary">Vaksin <?= $vaksin_user_ke ?></h1>
+
     </div>
     <div class="w-75 h-auto p-4 bg-white border-1 border-grey-custom">
-        <h3 class="text-info mb-2"><?= $nama_vaksin ?></h3>
+        <h3 class="text-info mb-2"><?= $jenis_vaksin ?></h3>
         <!-- <input class="mb-2 bg-white border-1 border-grey-custom text-grey-custom" type="date" name="tanggal-vaksin" placeholder="Pilih tanggal" required>
     <button class="bg-info p-4" type="date" placeholder="Pilih tanggal" required>Daftar Vaksin</button> -->
     </div>
