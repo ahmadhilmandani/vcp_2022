@@ -55,7 +55,7 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="vaksin-pasien" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 
-                <div class="table-responsive m-4">
+                <div class="table-responsive py-2">
                     <table class="table table-striped table-hover" id="tableVaksin">
                         <thead style="color: #ADADAD;">
                             <tr>
