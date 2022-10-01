@@ -56,7 +56,7 @@
             <div class="tab-pane fade show active" id="vaksin-pasien" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 
                 <div class="table-responsive py-2">
-                    <table class="table table-striped table-hover table-borderless" id="tableVaksin">
+                    <table class="table table-striped table-hover table-borderless border-0" id="tableVaksin">
                         <thead style="color: #ADADAD;">
                             <tr>
                                 <td>NIK</td>
@@ -68,7 +68,7 @@
                                 <td></td>
                             </tr>
                         </thead>
-                        <tbody class="ronded-cercle">
+                        <tbody class="border-0">
                             <tr>
                                 <td class="text-primary">3529121109010002</td>
                                 <td>RIfan</td>
