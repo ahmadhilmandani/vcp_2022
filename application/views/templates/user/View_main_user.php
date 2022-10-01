@@ -1,6 +1,6 @@
 <?php if ($data_click_sidebar === 0) : ?>
     <div id="beranda-konten" data-click-sidebar="0">
-        <h1 class="text-primary mb-4">Hai, Ahmad Hilman Dani</h1>
+        <h1 class="text-primary mb-4">Hai, <?= $this->session->userdata("nama") ?></h1>
     </div>
     <div class="p-5 border border-grey-light-custom" style="width: 60%;">
         <h3 class="text-primary mb-4">Daftar Vaksin keempat</h3>
