@@ -69,11 +69,12 @@ class C_dashboard extends CI_Controller
 	{
 		$data["judul"] = "Dashboard Admin";
 
+
 		$data["click_sidebar"] = $vaksin_user;
 		$data["vaksin_user_ke"] = $vaksin_user;
 
 
-		if ($vaksin_user == "Pertama") {
+		if ($vaksin_user == 0) {
 			$data["jenis_vaksin"] = "sinovac";
 		} else if ($vaksin_user == "Kedua") {
 			$data["jenis_vaksin"] = "sinovac-2";

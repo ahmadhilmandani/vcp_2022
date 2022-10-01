@@ -25,3 +25,12 @@
 
 </section>
 <script src="<?= base_url("asset/js/sidebarToggle.js?v.2") ?>" ?></script>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tableVaksin').DataTable();
+    });
+</script>
