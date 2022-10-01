@@ -34,8 +34,19 @@
         $('#tableVaksin').DataTable({
             responsive: true,
             processing: true,
-
-
         });
     });
+
+    $('.nav-tab-link').on('click', function() {
+        $('.nav-tab-link').removeClass('active text-primary border-bottom border-primary border-2')
+        $(this).addClass('active text-primary border-bottom border-primary border-2 ')
+        $('.nav-tab-link').addClass('text-muted')
+        $(this).removeClass('text-muted')
+    });
+    $('.nav-statistik').on('click', function() {
+        $('.nav-statistik').removeClass('active  text-primary border-bottom fw-bold')
+        $(this).addClass('active  text-primary border-bottom fw-bold')
+        $('.nav-statistik').addClass('text-muted')
+        $(this).removeClass('text-muted')
+    })
 </script>

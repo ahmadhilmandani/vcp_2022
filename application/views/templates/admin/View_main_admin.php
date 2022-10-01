@@ -41,12 +41,12 @@
         <!-- table data vaksin pertama -->
         <ul class="nav nav-tabs my-4" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link fs-4 active border-0 border-bottom border-primary border-2 " id="home-tab" data-bs-toggle="tab" data-bs-target="#vaksin-pasien" type="button" role="tab" aria-controls="vaksin-pasien" aria-selected="true">
+                <button class="nav-link nav-tab-link fs-4 border-0 active text-primary border-bottom border-primary border-2 " id="vaksin-tab" data-bs-toggle="tab" data-bs-target="#vaksin-pasien" type="button" role="tab" aria-controls="vaksin-pasien" aria-selected="true">
                     Pasien Tervaksin
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link fs-4 border-0 " id="profile-tab" data-bs-toggle="tab" data-bs-target="#statistik-data" type="button" role="tab" aria-controls="statistik-data" aria-selected="false">
+                <button class="nav-link text-muted nav-tab-link fs-4 border-0 " id="statstik-tab" data-bs-toggle="tab" data-bs-target="#statistik-data" type="button" role="tab" aria-controls="statistik-data" aria-selected="false">
                     Statistik Data
                 </button>
             </li>
@@ -92,7 +92,143 @@
                 </div>
 
             </div>
-            <div class="tab-pane fade" id="statistik-data" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">Statistik Data</div>
+
+            <!-- tab statistik -->
+            <div class="tab-pane fade" id="statistik-data" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                <div class="card">
+                    <div class="card-body">
+                        <nav>
+                            <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
+                                <button class="nav-link nav-statistik active border-0 text-primary border-bottom fw-bold" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#umur" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Umur</button>
+                                <button class="nav-link nav-statistik text-muted border-0" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#pekerjaan" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Pekerjaan</button>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+
+                            <!-- tab statistik Umur -->
+                            <div class="tab-pane fade show active" id="umur" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                                <div class="mx-5 my-5">
+
+                                    <div class="row mb-3">
+                                        <div class="col-xl-11 col-md-9 col-sm-12">
+                                            <div class="progress mt-1">
+                                                <div class="progress-bar bg-info" role="progressbar" aria-label="Example with label" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">25%</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
+                                            <span><small>25%</small></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-xl-11 col-md-9 col-sm-12">
+                                            <div class="progress mt-1">
+                                                <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 55%; background-color: #42A5AB;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">55%</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
+                                            <span><small>55%</small></span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row mb-3">
+                                        <div class="col-xl-11 col-md-9 col-sm-12">
+                                            <div class="progress mt-1">
+                                                <div class="progress-bar bg-info" role="progressbar" aria-label="Example with label" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">35%</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
+                                            <span><small>35%</small></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-xl-11 col-md-9 col-sm-12">
+                                            <div class="progress mt-1">
+                                                <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 75%; background-color: #42A5AB;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">75%</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
+                                            <span><small>75%</small></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- akhir tab statistik umur -->
+
+                            <!-- tab statistik pekerjaan -->
+                            <div class="tab-pane fade" id="pekerjaan" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+
+                                <div class="mx-5 my-5">
+
+                                    <div class="row mb-3">
+                                        <div class="col-xl-11 col-md-9 col-sm-12">
+                                            <div class="progress mt-1">
+                                                <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 75%; background-color: #42A5AB;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">75%</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
+                                            <span><small>75%</small></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-xl-11 col-md-9 col-sm-12">
+                                            <div class="progress mt-1">
+                                                <div class="progress-bar bg-info" role="progressbar" aria-label="Example with label" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">25%</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
+                                            <span><small>25%</small></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-xl-11 col-md-9 col-sm-12">
+                                            <div class="progress mt-1">
+                                                <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 55%; background-color: #42A5AB;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">55%</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
+                                            <span><small>55%</small></span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row mb-3">
+                                        <div class="col-xl-11 col-md-9 col-sm-12">
+                                            <div class="progress mt-1">
+                                                <div class="progress-bar bg-info" role="progressbar" aria-label="Example with label" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">35%</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
+                                            <span><small>35%</small></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-xl-11 col-md-9 col-sm-12">
+                                            <div class="progress mt-1">
+                                                <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 85%; background-color: #42A5AB;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">85%</small></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
+                                            <span><small>85%</small></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!-- akhir statistik pekerjaan -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
