@@ -19,19 +19,20 @@
         <form action="" method="post">
             <div class="row">
                 <div class="col-md-9">
-                    <input class="form-control form-control-lg" list="datalistOptions" id="exampleDataList" placeholder="Input NIK">
-                    <datalist id="datalistOptions">
-                        <option value="35121109010002">
-                        <option value="35122109210032">
-                        <option value="35122110210012">
-                        <option value="35122210410029">
-                        <option value="35122510410029">
-                    </datalist>
+                    <div class="mb-3">
+                        <input class="form-control form-control-lg" list="datalistOptions" id="exampleDataList" placeholder="Input NIK">
+                        <datalist id="datalistOptions">
+                            <option value="35121109010002">
+                            <option value="35122109210032">
+                            <option value="35122110210012">
+                            <option value="35122210410029">
+                            <option value="35122510410029">
+                        </datalist>
+                    </div>
                 </div>
                 <div class="col-md-3">
                     <div class="d-grid gap-2">
                         <button class="btn btn-info btn-lg" type="button">Tambah</button>
-
                     </div>
                 </div>
             </div>
