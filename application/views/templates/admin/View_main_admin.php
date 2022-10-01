@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="d-grid gap-2">
-                        <button class="btn btn-info btn-lg" type="button">Tambah</button>
+                        <button class="btn btn-info btn-lg" type="submit">Tambah</button>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <div class="tab-pane fade show active" id="vaksin-pasien" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 
                 <div class="table-responsive py-2">
-                    <table class="table table-striped table-hover" id="tableVaksin">
+                    <table class="table table-striped table-hover table-borderless" id="tableVaksin">
                         <thead style="color: #ADADAD;">
                             <tr>
                                 <td>NIK</td>
@@ -68,7 +68,7 @@
                                 <td></td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="ronded-cercle">
                             <tr>
                                 <td class="text-primary">3529121109010002</td>
                                 <td>RIfan</td>
@@ -87,10 +87,6 @@
                                 <td>Mahasiswa</td>
                                 <td><button class="btn btn-outline-danger btn-sm rounded-circle"><i class="bi bi-trash"></i></button></td>
                             </tr>
-
-
-
-
                         </tbody>
                     </table>
                 </div>

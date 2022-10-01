@@ -1,12 +1,12 @@
 <section class="container-fluid">
 
-    <button class="btn btn-primary d-inline-block d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-        Toggle static offcanvas
+    <button class="btn btn-primary d-inline-block d-md-none mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+        <i class="bi bi-list text-white"></i>
     </button>
 
     <div class="row vh-100 bg-white-custom">
 
-        <div class="offcanvas-start p-0 col-2 border-1 border-end border-grey-light-custom" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+        <div class="offcanvas-start p-0 col-xl-2 col-md-3 border-1 border-end border-grey-light-custom" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
 
             <section class="offcanvas-header">
                 <button type="button" class="btn-close d-inline-block d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -16,7 +16,7 @@
 
         </div>
 
-        <div class="container-lg col-12 col-md-10 d-sm-block mt-5 ps-5">
+        <div class="container-lg col-xl-10 col-md-9 d-sm-block mt-5 ps-5">
             <!-- JANGAN LUPA KASIH PENGECAKAN SESSION YANG DI SET BERNILAI ADMIN ATAU USER -->
             <?= $main_admin ?>
 
@@ -31,6 +31,11 @@
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#tableVaksin').DataTable();
+        $('#tableVaksin').DataTable({
+            responsive: true,
+            processing: true,
+
+
+        });
     });
 </script>
