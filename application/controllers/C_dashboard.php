@@ -11,7 +11,8 @@ class C_dashboard extends CI_Controller
 			$data["cek_user_login"] = $this->M_login->index();
 			
 			if($data["cek_user_login"] !== false){
-				return $this->dashboard_user();
+				$this->M_login->cek_tabel_vaksin();
+				redirect("C_dashboard/dashboard_user");
 			}
 			else{
 				redirect("C_dashboard/index");
@@ -75,5 +76,9 @@ class C_dashboard extends CI_Controller
 		$this->load->view("templates/View_header", $data);
 		$this->load->view("combine/View_dashboard_admin", $data);
 		$this->load->view('templates/View_footer');
+	}
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect('C_dashboard');
 	}
 }
