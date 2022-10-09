@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
 class M_login extends CI_Model
 {
 
@@ -61,10 +63,18 @@ class M_login extends CI_Model
                 }
                 // jika user BELUM DAFTAR
                 else{
-                    $this->db->select('dosis');
+                    // kayanya ini bisa dijadikan fungsi deh
+                    $this->db->select('dosis, nama_vaksin');
+                    $this->db->where("nik_user", "-");
                     $query = $this->db->get("vaksin_on_progress",1);
-                    $result = $query->row();
-                    $this->session->set_userdata("daftar_vaksin", "Daftar Vaksin $result->dosis");
+
+                    foreach ($query->result() as $row) {
+                        $session = [
+                            "daftar_vaksin" => $row->dosis,
+                            "nama_vaksin" => $row->nama_vaksin,
+                        ];
+                    };
+                    $this->session->set_userdata($session);
                 }
             }
         }

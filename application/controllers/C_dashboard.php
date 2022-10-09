@@ -6,19 +6,17 @@ class C_dashboard extends CI_Controller
 
 	public function index()
 	{
-		if(isset($_POST["login"])){
+		if (isset($_POST["login"])) {
 			$this->load->model("M_login");
 			$data["cek_user_login"] = $this->M_login->index();
-			
-			if($data["cek_user_login"] !== false){
+
+			if ($data["cek_user_login"] !== false) {
 				$this->M_login->cek_tabel_vaksin();
 				redirect("C_dashboard/dashboard_user");
-			}
-			else{
+			} else {
 				redirect("C_dashboard/index");
 			}
-		}
-		else{
+		} else {
 			$data["judul"] = "Selamat datang di web kami!";
 			$this->load->view("templates/View_header", $data);
 			$this->load->view("templates/View_login");
@@ -28,6 +26,8 @@ class C_dashboard extends CI_Controller
 
 	public function dashboard_user($vaksin_keberapa = 0)
 	{
+
+
 		$data["judul"] = "Dashboard User";
 		$data["vaksin_keberapa"] = $vaksin_keberapa;
 		$data["data_click_sidebar"] = $vaksin_keberapa;
@@ -72,13 +72,42 @@ class C_dashboard extends CI_Controller
 		$data['sidebar_admin'] = $this->load->view('templates/admin/View_sidebar_admin', NULL, TRUE);
 		$data['main_admin'] = $this->load->view('templates/admin/View_main_admin', $data, TRUE);
 
-
 		$this->load->view("templates/View_header", $data);
 		$this->load->view("combine/View_dashboard_admin", $data);
 		$this->load->view('templates/View_footer');
 	}
-	public function logout(){
+
+	public function logout()
+	{
 		$this->session->sess_destroy();
 		redirect('C_dashboard');
+	}
+
+	// public function sweet_alert($title, $text, $icon)
+	// {
+	// 	$this->session->set_flashdata('title', $title);
+	// 	$this->session->set_flashdata('text', $text);
+	// 	$this->session->set_flashdata('icon', $icon);
+	// }
+
+	public function daftar_user()
+	{
+		$this->load->model("M_daftar");
+		$this->load->model("M_login");
+		
+		$this->M_daftar->index();
+
+		//$daftar_vaksin = 
+		// if ($daftar_vaksin) {
+		// 	$this->sweet_alert("Berhasil terdaftar!", "Anda telah berhasil terdaftar! kami mohon kehadirannya pada waktu yang telah anda tentukan! ", "success");
+		// } else {
+		// 	$this->sweet_alert("Gagal terdaftar!", "Anda gagal terdaftar! Mohon coba lagi!", "error");
+		// }
+		
+		$this->session->unset_userdata('tidak_vaksin');
+		$this->session->unset_userdata('daftar_vaksin');
+		$this->M_login->cek_tabel_vaksin();
+
+		redirect("C_dashboard/dashboard_user");
 	}
 }

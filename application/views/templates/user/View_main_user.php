@@ -1,6 +1,5 @@
 <?php if ($data_click_sidebar === 0) : ?>
     <h1 class="text-primary mb-4">Hai, <?= $this->session->userdata('nama') ?>!</h1>
-
     <!-- JIKA USER SUDAH MELAKUKAN VAKSIN -->
     <?php if ($this->session->has_userdata('tidak_vaksin')) : ?>
         <div class="p-5 border border-grey-light-custom" style="width: 60%;">
@@ -9,9 +8,9 @@
         </div>
 
         <!-- JIKA USER BELUM DAFTAR VAKSIN -->
-    <?php elseif ($this->session->has_userdata('daftar_vaksin')) : ?>
+    <?php elseif ($this->session->has_userdata('daftar_vaksin') && !($this->session->has_userdata('nomor_antrian'))) : ?>
         <div class="p-5 border border-grey-light-custom" style="width: 60%;">
-            <h3 class="text-primary mb-4"><?= $this->session->userdata('daftar_vaksin') ?></h3>
+            <h3 class="text-primary mb-4">Daftar Vaksin <?= $this->session->userdata('daftar_vaksin') ?></h3>
             <form action="<?= base_url("C_dashboard/daftar_user") ?>" method="POST">
                 <input class="mb-4 border border-grey-custom rounded-1 text-grey-custom d-block w-75 p-2 " type="date" name="tanggal-vaksin" placeholder="Pilih tanggal" required>
                 <button class="btn bg-info px-4 py-2 d-block w-50">Daftar Vaksin</button>
