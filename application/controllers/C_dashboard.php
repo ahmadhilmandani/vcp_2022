@@ -83,26 +83,25 @@ class C_dashboard extends CI_Controller
 		redirect('C_dashboard');
 	}
 
-	// public function sweet_alert($title, $text, $icon)
-	// {
-	// 	$this->session->set_flashdata('title', $title);
-	// 	$this->session->set_flashdata('text', $text);
-	// 	$this->session->set_flashdata('icon', $icon);
-	// }
+	public function sweet_alert($title, $text, $icon)
+	{
+		$this->session->set_userdata('flash_title', $title);
+		$this->session->set_userdata('flash_text', $text);
+		$this->session->set_userdata('flash_icon', $icon);
+	}
 
 	public function daftar_user()
 	{
 		$this->load->model("M_daftar");
 		$this->load->model("M_login");
 		
-		$this->M_daftar->index();
-
-		//$daftar_vaksin = 
-		// if ($daftar_vaksin) {
-		// 	$this->sweet_alert("Berhasil terdaftar!", "Anda telah berhasil terdaftar! kami mohon kehadirannya pada waktu yang telah anda tentukan! ", "success");
-		// } else {
-		// 	$this->sweet_alert("Gagal terdaftar!", "Anda gagal terdaftar! Mohon coba lagi!", "error");
-		// }
+		
+		$daftar_vaksin = $this->M_daftar->index();
+		if ($daftar_vaksin) {
+			$this->sweet_alert("Berhasil terdaftar!", "Cek informasi selengkapnya pada tiket yang anda akan peroleh!", "success");
+		} else {
+			$this->sweet_alert("Gagal terdaftar!", "Anda gagal terdaftar! Mohon coba lagi!", "error");
+		}
 		
 		$this->session->unset_userdata('tidak_vaksin');
 		$this->session->unset_userdata('daftar_vaksin');

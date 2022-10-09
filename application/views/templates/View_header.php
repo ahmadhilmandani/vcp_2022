@@ -26,8 +26,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
-	<!-- <script src="</?= base_url('asset/js/sweetalert2.all.min.js')?>" defer></script>
-	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11" defer></script> -->
+
 </head>
 
 <body>

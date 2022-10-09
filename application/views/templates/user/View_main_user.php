@@ -1,4 +1,5 @@
 <?php if ($data_click_sidebar === 0) : ?>
+    <?= $this->session->userdata('flash') ?>
     <h1 class="text-primary mb-4">Hai, <?= $this->session->userdata('nama') ?>!</h1>
     <!-- JIKA USER SUDAH MELAKUKAN VAKSIN -->
     <?php if ($this->session->has_userdata('tidak_vaksin')) : ?>
