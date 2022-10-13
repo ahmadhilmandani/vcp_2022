@@ -16,7 +16,7 @@
 
         </div>
 
-        <div class="container-lg col-xl-10 col-md-9 d-sm-block mt-5 ps-5">
+        <div class="container-lg col-xl-10 col-md-9 d-sm-block mt-5 ps-md-5">
             <!-- JANGAN LUPA KASIH PENGECAKAN SESSION YANG DI SET BERNILAI ADMIN ATAU USER -->
             <?= $main_admin ?>
 
@@ -29,6 +29,7 @@
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js" integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#tableVaksin').DataTable({
@@ -49,4 +50,28 @@
         $('.nav-statistik').addClass('text-muted')
         $(this).removeClass('text-muted')
     })
+    
+</script>
+<!-- script chart js -->
+<script>
+const ctx = document.getElementById('myChart');
+const myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ['Dewasa (31-55)', 'Remaja(18-30)', 'Anak(6-17)', 'Belum Vaksin'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5,],
+            backgroundColor: [
+                '#3392F4',
+                '#6CCFE7',
+                '#76ECF4',
+                '#D1D1D1',
+            ]
+        }]
+    },
+    options: {
+        
+    }
+});
 </script>
