@@ -3,7 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class C_dashboard extends CI_Controller
 {
-
 	public function index()
 	{
 		if (isset($_POST["login"])) {
@@ -26,7 +25,6 @@ class C_dashboard extends CI_Controller
 
 	public function dashboard_user($vaksin_keberapa = 0)
 	{
-
 
 		$data["judul"] = "Dashboard User";
 		$data["vaksin_keberapa"] = $vaksin_keberapa;
@@ -68,7 +66,7 @@ class C_dashboard extends CI_Controller
 		} else if ($vaksin_user == "Keempat") {
 			$data["jenis_vaksin"] = "sinovac-4";
 		}
-		// sidebar
+		
 		$data['sidebar_admin'] = $this->load->view('templates/admin/View_sidebar_admin', NULL, TRUE);
 		$data['main_admin'] = $this->load->view('templates/admin/View_main_admin', $data, TRUE);
 
@@ -94,14 +92,10 @@ class C_dashboard extends CI_Controller
 	{
 		$this->load->model("M_daftar");
 		$this->load->model("M_login");
-		
-		
+		$this->load->library("Alert_lib");
+
 		$daftar_vaksin = $this->M_daftar->index();
-		if ($daftar_vaksin) {
-			$this->sweet_alert("Berhasil terdaftar!", "Cek informasi selengkapnya pada tiket yang anda akan peroleh!", "success");
-		} else {
-			$this->sweet_alert("Gagal terdaftar!", "Anda gagal terdaftar! Mohon coba lagi!", "error");
-		}
+		$this->alert_lib->alert_success_or_error($daftar_vaksin[0], $daftar_vaksin[1]);
 		
 		$this->session->unset_userdata('tidak_vaksin');
 		$this->session->unset_userdata('daftar_vaksin');

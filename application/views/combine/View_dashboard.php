@@ -1,8 +1,6 @@
 <section class="container-fluid">
 
-  <button class="btn btn-primary d-inline-block d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-    Toggle static offcanvas
-  </button>
+  <i class="bi bi-list btn text-dark d-inline-block d-md-none position-relative" style="top: 15px" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"></i>
 
   <div class="row vh-100 bg-white-custom">
 
@@ -16,7 +14,7 @@
 
     </div>
 
-    <div class="container-lg col-12 col-md-10 d-sm-block mt-5 ps-5">
+    <div class="container-lg col-12 col-md-10 d-sm-block mt-5 ps-lg-5">
       <!-- JANGAN LUPA KASIH PENGECAKAN SESSION YANG DI SET BERNILAI ADMIN ATAU USER -->
       <?= $vaksin_user ?>
     

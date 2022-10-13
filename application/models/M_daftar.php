@@ -14,10 +14,10 @@ class M_daftar extends CI_Model
         ];
        $query =  $this->db->insert("vaksin_on_progress", $data);
         if($this->db->affected_rows() == 1){
-            return TRUE;
+            return [TRUE, "Anda secara resmi terdaftar! Cek tiket untuk informasi selengkapnya!"];
         }
         else{
-            return FALSE;
+            return [FALSE, "Gagal! Mohon ulangi lagi!"];
         }
     }
 }

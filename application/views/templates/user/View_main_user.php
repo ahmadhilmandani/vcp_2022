@@ -3,14 +3,14 @@
     <h1 class="text-primary mb-4">Hai, <?= $this->session->userdata('nama') ?>!</h1>
     <!-- JIKA USER SUDAH MELAKUKAN VAKSIN -->
     <?php if ($this->session->has_userdata('tidak_vaksin')) : ?>
-        <div class="p-5 border border-grey-light-custom" style="width: 60%;">
+        <div class="p-5 border border-grey-light-custom" style="width: 100%; max-width: 600px;">
             <i class="bi bi-calendar2-x my-3 text-center d-block text-info" style="font-size: 100px;"></i>
             <h6 class="h6 fw-light text-center"><?= $this->session->userdata('tidak_vaksin') ?></h6>
         </div>
 
         <!-- JIKA USER BELUM DAFTAR VAKSIN -->
     <?php elseif ($this->session->has_userdata('daftar_vaksin') && !($this->session->has_userdata('nomor_antrian'))) : ?>
-        <div class="p-5 border border-grey-light-custom" style="width: 60%;">
+        <div class="p-5 border border-grey-light-custom" style="width: 100%; max-width: 600px;">
             <h3 class="text-primary mb-4">Daftar Vaksin <?= $this->session->userdata('daftar_vaksin') ?></h3>
             <form action="<?= base_url("C_dashboard/daftar_user") ?>" method="POST">
                 <input class="mb-4 border border-grey-custom rounded-1 text-grey-custom d-block w-75 p-2 " type="date" name="tanggal-vaksin" placeholder="Pilih tanggal" required>
@@ -20,7 +20,7 @@
         <!-- JIKA USER SUDAH DAFTAR VAKSIN -->
     <?php else : ?>
         <p><?= date('d', (strtotime($this->session->userdata('tanggal_vaksin'))) - time()) ?> Hari menuju Vaksin</p>
-        <div class="p-5 border border-grey-light-custom mb-4" style="width: 60%;">
+        <div class="p-5 border border-grey-light-custom mb-4" style="width: 100%; max-width: 600px;">
             <h3 class="text-primary mb-4">Tiket Vaksin <?= $this->session->userdata('dosis') ?></h3>
             <div class="container-fluid">
                 <div class="row position-relative">
