@@ -30,12 +30,24 @@ class C_admin extends CI_Controller
 
         if ($vaksin_user == "Pertama") {
             $data['getVaksinUser'] = $this->db->get_where('vaksin', ['dosis' => 'Pertama'])->result_array();
+            $this->db->where("nik_user !=", '-');
+            $this->db->where("dosis", 'Pertama');
+            $data['nik_user_tb_vaksin_on_progress']  = $this->db->get('vaksin_on_progress')->result_array();
         } else if ($vaksin_user == "Kedua") {
             $data['getVaksinUser'] = $this->db->get_where('vaksin', ['dosis' => 'Kedua'])->result_array();
+            $this->db->where("nik_user !=", '-');
+            $this->db->where("dosis", 'Kedua');
+            $data['nik_user_tb_vaksin_on_progress']  = $this->db->get('vaksin_on_progress')->result_array();
         } else if ($vaksin_user == "Ketiga") {
             $data['getVaksinUser'] = $this->db->get_where('vaksin', ['dosis' => 'Ketiga'])->result_array();
+            $this->db->where("nik_user !=", '-');
+            $this->db->where("dosis", 'Ketiga');
+            $data['nik_user_tb_vaksin_on_progress']  = $this->db->get('vaksin_on_progress')->result_array();
         } else if ($vaksin_user == "Keempat") {
             $data['getVaksinUser'] = $this->db->get_where('vaksin', ['dosis' => 'Keempat'])->result_array();
+            $this->db->where("nik_user !=", '-');
+            $this->db->where("dosis", 'Keempat');
+            $data['nik_user_tb_vaksin_on_progress']  = $this->db->get('vaksin_on_progress')->result_array();
         }
 
         $data['sidebar_admin'] = $this->load->view('templates/admin/View_sidebar_admin', NULL, TRUE);
