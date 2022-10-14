@@ -7,16 +7,16 @@
         <div class="card mb-5">
             <div class="card-body p-5">
                 <h3 class="text-primary mb-4">Agendakan Vaksin!</h3>
-                <form action="" method="post">
+                <form action="<?= base_url('C_admin/vaksin_on_progress'); ?>" method="post">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <i><label for="vaksinDosis" class="form-label fs-5 text-muted">Vaksin Dosis Ke</label></i>
                                 <select name="dosis-vaksin" class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="vaksinDosis">
-                                    <option selected></option>
-                                    <option value="1">Dosis 1</option>
-                                    <option value="2">Dosis 2</option>
-                                    <option value="3">Dosis 3</option>
+                                    <option value="Pertama">Pertama</option>
+                                    <option value="Kedua">Kedua</option>
+                                    <option value="Ketiga">Ketiga</option>
+                                    <option value="Keempat">Keempat</option>
                                 </select>
                             </div>
 
@@ -33,10 +33,8 @@
                             <div class="mb-3">
                                 <i><label for="namaVaksin" class="form-label fs-5 text-muted">Nama Vaksin</label></i>
                                 <select name="nama-vaksin" class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="namaVaksin">
-                                    <option selected></option>
-                                    <option value="1">Dosis 1</option>
-                                    <option value="2">Dosis 2</option>
-                                    <option value="3">Dosis 3</option>
+                                    <option value="Sinopharm">Sinopharm</option>
+                                    <option value="Astrazheneca">Astrazheneca</option>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -44,7 +42,7 @@
                                 <input type="date" name="tanggal-akhir" class="form-control border-0 border-bottom border-3 rounded-0" id="tanggal-vaksin-akhir" value="<?= date("Y-m-d"); ?>">
                             </div>
                             <div class="d-grid gap-2 my-5">
-                                <button type="button" class="btn bg-info py-2 fs-5">Agendakan</button>
+                                <button type="submit" class="btn bg-info py-2 fs-5">Agendakan</button>
                             </div>
                         </div>
                     </div>
