@@ -12,7 +12,7 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <i><label for="vaksinDosis" class="form-label fs-5 text-muted">Vaksin Dosis Ke</label></i>
-                                <select name="dosis-vaksin" class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="vaksinDosis">
+                                <select name="dosis-vaksin" required class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="vaksinDosis">
                                     <option value="Pertama">Pertama</option>
                                     <option value="Kedua">Kedua</option>
                                     <option value="Ketiga">Ketiga</option>
@@ -22,32 +22,33 @@
 
                             <div class="mb-3">
                                 <i><label for="tanggal-vaksin-mulai" class="form-label fs-5 text-muted">Mulainya Vaksin</label></i>
-                                <input type="date" name="tanggal-mulai" class="form-control border-0 border-bottom border-3 rounded-0" id="tanggal-vaksin-mulai" value="<?= date("Y-m-d"); ?>">
+                                <input type="date" required name="tanggal-mulai" class="form-control border-0 border-bottom border-3 rounded-0" id="tanggal-vaksin-mulai" value="<?= date("Y-m-d"); ?>">
                             </div>
                             <div class="mb-3">
                                 <i><label for="kuota" class="form-label fs-5 text-muted">Kuota</label></i>
-                                <input type="number" name="kuota" class="form-control border-0 border-bottom border-3 rounded-0" id="kuota" value="<?= date("Y-m-d"); ?>">
+                                <input type="number" required name="kuota" class="form-control border-0 border-bottom border-3 rounded-0" id="kuota" value="<?= date("Y-m-d"); ?>">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <i><label for="namaVaksin" class="form-label fs-5 text-muted">Nama Vaksin</label></i>
-                                <select name="nama-vaksin" class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="namaVaksin">
+                                <select name="nama-vaksin" required class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="namaVaksin">
                                     <option value="Sinopharm">Sinopharm</option>
                                     <option value="Astrazheneca">Astrazheneca</option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <i><label for="tanggal-vaksin-akhir" class="form-label fs-5 text-muted">Berakhirnya Vaksin</label></i>
-                                <input type="date" name="tanggal-akhir" class="form-control border-0 border-bottom border-3 rounded-0" id="tanggal-vaksin-akhir" value="<?= date("Y-m-d"); ?>">
+                                <input type="date" required name="tanggal-akhir" class="form-control border-0 border-bottom border-3 rounded-0" id="tanggal-vaksin-akhir" value="<?= date("Y-m-d"); ?>">
                             </div>
                             <div class="d-grid gap-2 my-5">
-                                <button type="submit" class="btn bg-info py-2 fs-5">Agendakan</button>
+                                <button type="submit" class="btn bg-info py-2 fs-5" <?= $btn_disable; ?>>Agendakan</button>
                             </div>
                         </div>
                     </div>
 
                 </form>
+                <?= $agenda_vaksin; ?>
             </div>
         </div>
     </div>
@@ -57,6 +58,7 @@
 <?php else : ?>
     <div id="beranda-konten" data-click-sidebar="<?= $click_sidebar ?>" onclick="clickSidebar(1)">
         <h1 class="text-primary">Vaksin <?= $vaksin_user_ke ?></h1>
+
 
     </div>
     <div class="h-auto py-4 bg-white border-1 border-grey-custom pe-5 container-fluid">
@@ -106,32 +108,25 @@
                             <tr>
                                 <td>NIK</td>
                                 <td>Nama</td>
-                                <td>Tgl Lahir</td>
-                                <td>Kab.</td>
+                                <td>Tgl vaksin</td>
+                                <td>Nama vaksin</td>
                                 <td>L/P</td>
                                 <td>Pekerjaan</td>
                                 <td></td>
                             </tr>
                         </thead>
                         <tbody class="border-0">
-                            <tr>
-                                <td class="text-primary">3529121109010002</td>
-                                <td>RIfan</td>
-                                <td>11/09/01</td>
-                                <td>Sumenep</td>
-                                <td>L</td>
-                                <td>Mahasiswa</td>
-                                <td><button class="btn btn-outline-danger btn-sm rounded-circle"><i class="bi bi-trash"></i></button></td>
-                            </tr>
-                            <tr>
-                                <td class="text-primary">3529121109010002</td>
-                                <td>RIfan</td>
-                                <td>11/09/01</td>
-                                <td>Sumenep</td>
-                                <td>L</td>
-                                <td>Mahasiswa</td>
-                                <td><button class="btn btn-outline-danger btn-sm rounded-circle"><i class="bi bi-trash"></i></button></td>
-                            </tr>
+                            <?php foreach ($getVaksinUser as $row) : ?>
+                                <tr>
+                                    <td class="text-primary"><?= $row['nik_user']; ?></td>
+                                    <td><?= $row['nama_user']; ?></td>
+                                    <td><?= $row['tanggal_vaksin']; ?></td>
+                                    <td><?= $row['nama_vaksin']; ?></td>
+                                    <td>L</td>
+                                    <td>Mahasiswa</td>
+                                    <td><button class="btn btn-outline-danger btn-sm rounded-circle"><i class="bi bi-trash"></i></button></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
