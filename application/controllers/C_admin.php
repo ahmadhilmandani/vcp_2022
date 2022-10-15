@@ -67,4 +67,12 @@ class C_admin extends CI_Controller
         $this->alert_lib->alert_success_or_error($result_input_nik_vaksin[0], $result_input_nik_vaksin[1]);
         redirect('C_admin/admin/' . $this->input->post('vaksin-user-ke'));
     }
+
+    public function delete_uservaksin_by_nik($id_vaksin)
+    {
+        $this->load->library("Alert_lib");
+        $result_delete_nik_vaksin = $this->M_vaksin_on->delete_uservaksin_by_nik($id_vaksin);
+        $this->alert_lib->alert_success_or_error($result_delete_nik_vaksin[0], $result_delete_nik_vaksin[1]);
+        redirect('C_admin/admin/' . $this->input->post('vaksin-user-ke'));
+    }
 }

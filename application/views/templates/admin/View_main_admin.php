@@ -123,7 +123,12 @@
                                     <td><?= $row['nama_vaksin']; ?></td>
                                     <td><?= $row['jenis_kelamin']; ?></td>
                                     <td><?= $row['perkerjaan']; ?></td>
-                                    <td><button class="btn btn-outline-danger btn-sm rounded-circle"><i class="bi bi-trash"></i></button></td>
+                                    <td>
+                                        <form action="<?= base_url('C_admin/delete_uservaksin_by_nik/' . $row['id_vaksin']); ?>" method="post">
+                                            <input type="hidden" name="vaksin-user-ke" value="<?= $vaksin_user_ke ?>">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="bi bi-trash"></i></button>
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

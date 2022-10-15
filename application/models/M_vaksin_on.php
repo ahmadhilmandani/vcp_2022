@@ -33,7 +33,7 @@ class M_vaksin_on extends CI_Model
 
     public function getVaksinUser($vaksin)
     {
-        return $this->db->query("SELECT user.nik_id_admin, user.nama, user.jenis_kelamin, user.perkerjaan, vaksin.tanggal_vaksin, vaksin.nama_vaksin, vaksin.dosis FROM user, vaksin WHERE vaksin.nik_user = user.nik_id_admin AND vaksin.dosis LIKE '%$vaksin%'")->result_array();
+        return $this->db->query("SELECT user.nik_id_admin, user.nama, user.jenis_kelamin, user.perkerjaan, vaksin.tanggal_vaksin, vaksin.nama_vaksin, vaksin.dosis, vaksin.id_vaksin FROM user, vaksin WHERE vaksin.nik_user = user.nik_id_admin AND vaksin.dosis LIKE '%$vaksin%'")->result_array();
         // return $this->db->get_where('vaksin', ['dosis' => $vaksin])->result_array();
     }
 
@@ -124,6 +124,22 @@ class M_vaksin_on extends CI_Model
             }
         } else {
             return [FALSE, "Data NIK tidak terdaftar!"];
+        }
+    }
+
+    public function delete_uservaksin_by_nik($id)
+    {
+        $id_vaksin_to_delete = htmlspecialchars($id);
+        $user = $this->db->get_where('vaksin', ['id_vaksin' => $id_vaksin_to_delete])->row_array();
+        if ($user) {
+            $this->db->delete('vaksin', ['id_vaksin' => $id_vaksin_to_delete]);
+            if ($this->db->affected_rows() == 1) {
+                return [TRUE, "Hapus Data Berhasil!"];
+            } else {
+                return [FALSE, "Hapus Data Gagal!"];
+            }
+        }else{
+            return [FALSE, "Hapus gagal!"];
         }
     }
 }
