@@ -17,7 +17,7 @@ class C_admin extends CI_Controller
         $cekagenda = $this->db->get_where('vaksin_on_progress', ['nik_user' => '-'])->row_array();
 
         if ($cekagenda) {
-            $data['agenda_vaksin'] = "<div class='alert alert-warning' role='alert'>Sedang ada agenda vaksin Dosis ke <b>" . $cekagenda['dosis'] . "</b> s.d tanggal <b>" . $cekagenda['tanggal_vaksin_akhir'] . "</b> </div>";
+            $data['agenda_vaksin'] = "<div class='alert alert-warning' role='alert'>Sedang ada agenda vaksin Dosis <b>" . $cekagenda['dosis'] . "</b> s.d tanggal <b>" . $cekagenda['tanggal_vaksin_akhir'] . "</b> </div>";
             $data['btn_disable'] = 'disabled';
         } else {
             $data['btn_disable'] = '';
@@ -29,25 +29,17 @@ class C_admin extends CI_Controller
 
 
         if ($vaksin_user == "Pertama") {
-            $data['getVaksinUser'] = $this->db->get_where('vaksin', ['dosis' => 'Pertama'])->result_array();
-            $this->db->where("nik_user !=", '-');
-            $this->db->where("dosis", 'Pertama');
-            $data['nik_user_tb_vaksin_on_progress']  = $this->db->get('vaksin_on_progress')->result_array();
+            $data['getVaksinUser'] = $this->_getVaksinUser($vaksin_user);
+            $data['nik_user_tb_vaksin_on_progress']  = $this->_get_nik_user_tb_vaksin_on_progress($vaksin_user);
         } else if ($vaksin_user == "Kedua") {
-            $data['getVaksinUser'] = $this->db->get_where('vaksin', ['dosis' => 'Kedua'])->result_array();
-            $this->db->where("nik_user !=", '-');
-            $this->db->where("dosis", 'Kedua');
-            $data['nik_user_tb_vaksin_on_progress']  = $this->db->get('vaksin_on_progress')->result_array();
+            $data['getVaksinUser'] = $this->_getVaksinUser("Kedua");
+            $data['nik_user_tb_vaksin_on_progress']  = $this->_get_nik_user_tb_vaksin_on_progress($vaksin_user);
         } else if ($vaksin_user == "Ketiga") {
-            $data['getVaksinUser'] = $this->db->get_where('vaksin', ['dosis' => 'Ketiga'])->result_array();
-            $this->db->where("nik_user !=", '-');
-            $this->db->where("dosis", 'Ketiga');
-            $data['nik_user_tb_vaksin_on_progress']  = $this->db->get('vaksin_on_progress')->result_array();
+            $data['getVaksinUser'] = $this->_getVaksinUser("Ketiga");
+            $data['nik_user_tb_vaksin_on_progress']  = $this->_get_nik_user_tb_vaksin_on_progress($vaksin_user);
         } else if ($vaksin_user == "Keempat") {
-            $data['getVaksinUser'] = $this->db->get_where('vaksin', ['dosis' => 'Keempat'])->result_array();
-            $this->db->where("nik_user !=", '-');
-            $this->db->where("dosis", 'Keempat');
-            $data['nik_user_tb_vaksin_on_progress']  = $this->db->get('vaksin_on_progress')->result_array();
+            $data['getVaksinUser'] = $this->_getVaksinUser("Keempat");
+             $data['nik_user_tb_vaksin_on_progress']  = $this->_get_nik_user_tb_vaksin_on_progress($vaksin_user);
         }
 
         $data['sidebar_admin'] = $this->load->view('templates/admin/View_sidebar_admin', NULL, TRUE);
@@ -56,6 +48,17 @@ class C_admin extends CI_Controller
         $this->load->view("templates/View_header", $data);
         $this->load->view("combine/View_dashboard_admin", $data);
         $this->load->view('templates/View_footer');
+    }
+
+    private function _getVaksinUser($vaksin)
+    {
+        return $this->db->get_where('vaksin', ['dosis' => $vaksin])->result_array();
+    }
+
+    private function _get_nik_user_tb_vaksin_on_progress($dosis){
+        $this->db->where("nik_user !=", '-');
+        $this->db->where("dosis", $dosis);
+        return $this->db->get('vaksin_on_progress')->result_array();
     }
 
     public function vaksin_on_progress()
@@ -91,6 +94,9 @@ class C_admin extends CI_Controller
                 'tempat_vaksin' => [
                     'type' => 'VARCHAR',
                     'constraint' => '150',
+                ],
+                'tanggal_vaksin' => [
+                    'type'=> 'DATE'
                 ],
                 'tanggal_vaksin_mulai' => [
                     'type' => 'DATE'

@@ -24,4 +24,4 @@
     <a href="<?= base_url("C_admin/admin/Keempat") ?>" class="text-grey-custom text-decoration-none ms-3">Vaksin keempat</a>
 </div>
 
-<button class="btn px-4 py-2 mt-4 text-grey-custom text-decoration-none" onclick="exit()">exit</button>
+<a href="<?= base_url('C_dashboard/logout'); ?>" class="btn px-4 py-2 mt-4 text-grey-custom text-decoration-none" onclick="exit()">exit</a>
