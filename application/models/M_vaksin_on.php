@@ -34,7 +34,6 @@ class M_vaksin_on extends CI_Model
     public function getVaksinUser($vaksin)
     {
         return $this->db->query("SELECT user.nik_id_admin, user.nama, user.jenis_kelamin, user.perkerjaan, vaksin.tanggal_vaksin, vaksin.nama_vaksin, vaksin.dosis, vaksin.id_vaksin FROM user, vaksin WHERE vaksin.nik_user = user.nik_id_admin AND vaksin.dosis LIKE '%$vaksin%'")->result_array();
-        // return $this->db->get_where('vaksin', ['dosis' => $vaksin])->result_array();
     }
 
     public function get_nik_user_tb_vaksin_on_progress($dosis)
@@ -138,8 +137,19 @@ class M_vaksin_on extends CI_Model
             } else {
                 return [FALSE, "Hapus Data Gagal!"];
             }
-        }else{
+        } else {
             return [FALSE, "Hapus gagal!"];
         }
+    }
+
+    public function get_data_pekerjaan($vaksin)
+    {
+        $daftar_pekerjaan_user = $this->db->query("SELECT user.perkerjaan, COUNT(user.perkerjaan), COUNT(*), COUNT(user.perkerjaan)/COUNT(*) * 100 AS 'percentage' from user,vaksin WHERE vaksin.nik_user = user.nik_id_admin  AND vaksin.dosis LIKE '%$vaksin%' GROUP BY user.perkerjaan")->result_array();
+        
+        
+        return [
+            'daftar_pekerjaan' => $daftar_pekerjaan_user,
+            
+        ];
     }
 }

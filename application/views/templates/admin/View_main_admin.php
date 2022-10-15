@@ -148,47 +148,29 @@
                                         <button class="nav-link nav-statistik active border-0 text-primary fw-bold fs-5" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#pekerjaan" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Pekerjaan</button>
                                     </div>
                                 </nav>
-                                <div class="tab-content" id="nav-tabContent">
 
-                                    <!-- tab statistik Umur -->
-                                    <div class="tab-pane fade show active" id="pekerjaan" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                                        <div class="my-3">
+                                <div class="my-3">
+                                    <?php $i=0 ?>
+                                    <?php foreach ($statistik_pekerjaan as $row) : ?>
+                                        <?php $i++ ?>
+                                        <?php $persen = explode('.',$row['percentage']) ?>
+                                        <div class="row mb-3 ps-3">
+                                            <div class="col-xl-3 col-md-3">
+                                                <span><?= $row['perkerjaan']; ?></span>
+                                                
 
-                                            <div class="row mb-3 ps-3">
-                                                <div class="col-xl-3 col-md-3">
-                                                    <span>Tenaga Medis</span>
-                                                </div>
-                                                <div class="col-xl-7 col-md-6 col-sm-12">
-                                                    <div class="progress mt-1">
-                                                        <div class="progress-bar bg-info" role="progressbar" aria-label="Example with label" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">25%</small></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-md-3 d-md-block d-none">
-                                                    <span>25%</span>
+                                            </div>
+                                            <div class="col-xl-7 col-md-6 col-sm-12">
+                                                <div class="progress mt-1">
+                                                    <div class="progress-bar <?= $i % 2 == 0 ? 'bg-primary': 'bg-info' ?>" role="progressbar" aria-label="Example with label" style="width: <?= $persen[0] ?>%;" aria-valuenow="<?= $persen[0] ?>" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none"><?= $persen[0] ?>%</small></div>
                                                 </div>
                                             </div>
-
-                                            <div class="row mb-3 ps-3">
-                                                <div class="col-xl-3 col-md-3">
-                                                    <span>Guru</span>
-                                                </div>
-                                                <div class="col-xl-7 col-md-6 col-sm-12">
-                                                    <div class="progress mt-1">
-                                                        <div class="progress-bar bg-primary" role="progressbar" aria-label="Example with label" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">25%</small></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-2 col-md-3 d-md-block d-none">
-                                                    <span>25%</span>
-                                                </div>
+                                            <div class="col-xl-2 col-md-3 d-md-block d-none">
+                                                <span><?= $persen[0] ?>%</span>
                                             </div>
-
-
-
                                         </div>
-                                    </div>
-                                    <!-- akhir tab statistik umur -->
-
-
+                                    <?php endforeach; ?>
+                                    
                                 </div>
                             </div>
                         </div>

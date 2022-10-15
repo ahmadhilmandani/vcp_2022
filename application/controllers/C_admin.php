@@ -26,20 +26,25 @@ class C_admin extends CI_Controller
 
         $data["click_sidebar"] = $vaksin_user;
         $data["vaksin_user_ke"] = $vaksin_user;
+        $data['data_statistik_pekerjaan'] = $this->M_vaksin_on->get_data_pekerjaan($vaksin_user);
 
 
         if ($vaksin_user == "Pertama") {
             $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
-            $data['nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
+            $data['suggestion_nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
+            $data['statistik_pekerjaan'] = $data['data_statistik_pekerjaan']['daftar_pekerjaan'];
         } else if ($vaksin_user == "Kedua") {
             $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
             $data['suggestion_nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
+            $data['statistik_pekerjaan'] = $data['data_statistik_pekerjaan']['daftar_pekerjaan'];
         } else if ($vaksin_user == "Ketiga") {
             $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
-            $data['nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
+            $data['suggestion_nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
+            $data['statistik_pekerjaan'] = $data['data_statistik_pekerjaan']['daftar_pekerjaan'];
         } else if ($vaksin_user == "Keempat") {
             $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
-            $data['nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
+            $data['suggestion_nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
+            $data['statistik_pekerjaan'] = $data['data_statistik_pekerjaan']['daftar_pekerjaan'];
         }
 
         $data['sidebar_admin'] = $this->load->view('templates/admin/View_sidebar_admin', NULL, TRUE);
