@@ -39,7 +39,7 @@ class C_admin extends CI_Controller
             $data['nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
         } else if ($vaksin_user == "Keempat") {
             $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
-             $data['nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
+            $data['nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
         }
 
         $data['sidebar_admin'] = $this->load->view('templates/admin/View_sidebar_admin', NULL, TRUE);
@@ -50,16 +50,21 @@ class C_admin extends CI_Controller
         $this->load->view('templates/View_footer');
     }
 
-    
+
 
     public function vaksin_on_progress()
     {
-
         $this->load->library("Alert_lib");
         $result_agendakan_vaksin = $this->M_vaksin_on->index();
         $this->alert_lib->alert_success_or_error($result_agendakan_vaksin[0], $result_agendakan_vaksin[1]);
         redirect('C_admin/admin');
     }
 
-    
+    public function input_user_nik_tb_vaksin()
+    {
+        $this->load->library("Alert_lib");
+        $result_input_nik_vaksin = $this->M_vaksin_on->input_nik_to_vaksin();
+        $this->alert_lib->alert_success_or_error($result_input_nik_vaksin[0], $result_input_nik_vaksin[1]);
+        redirect('C_admin/admin/' . $this->input->post('vaksin-user-ke'));
+    }
 }

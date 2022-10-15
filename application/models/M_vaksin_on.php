@@ -33,11 +33,12 @@ class M_vaksin_on extends CI_Model
 
     public function getVaksinUser($vaksin)
     {
-       return $this->db->query("SELECT user.nik_id_admin, user.nama, user.jenis_kelamin, user.perkerjaan, vaksin.tanggal_vaksin, vaksin.nama_vaksin, vaksin.dosis FROM user, vaksin WHERE vaksin.nik_user = user.nik_id_admin AND vaksin.dosis LIKE '%$vaksin%'")->result_array();
+        return $this->db->query("SELECT user.nik_id_admin, user.nama, user.jenis_kelamin, user.perkerjaan, vaksin.tanggal_vaksin, vaksin.nama_vaksin, vaksin.dosis FROM user, vaksin WHERE vaksin.nik_user = user.nik_id_admin AND vaksin.dosis LIKE '%$vaksin%'")->result_array();
         // return $this->db->get_where('vaksin', ['dosis' => $vaksin])->result_array();
     }
 
-    public function get_nik_user_tb_vaksin_on_progress($dosis){
+    public function get_nik_user_tb_vaksin_on_progress($dosis)
+    {
         $this->db->where("nik_user !=", '-');
         $this->db->where("dosis", $dosis);
         return $this->db->get('vaksin_on_progress')->result_array();
@@ -69,7 +70,7 @@ class M_vaksin_on extends CI_Model
                     'constraint' => '150',
                 ],
                 'tanggal_vaksin' => [
-                    'type'=> 'DATE'
+                    'type' => 'DATE'
                 ],
                 'tanggal_vaksin_mulai' => [
                     'type' => 'DATE'
@@ -92,6 +93,37 @@ class M_vaksin_on extends CI_Model
             $this->dbforge->add_field($fields);
             $this->dbforge->add_key('nik_user', TRUE);
             $this->dbforge->create_table('vaksin_on_progress', TRUE);
+        }
+    }
+
+    public function input_nik_to_vaksin()
+    {
+        $nik_input = $this->input->post('nik-user');
+        $vaksin_user_ke = $this->input->post('vaksin-user-ke');
+        $user = $this->db->get_where('vaksin_on_progress', ['nik_user' => $nik_input])->row_array();
+
+        if ($user) {
+            if ($user['dosis'] == $vaksin_user_ke) {
+                $data = [
+                    'id_vaksin' => '',
+                    'nik_user' => htmlspecialchars($nik_input, true),
+                    'dosis' => $user['dosis'],
+                    'nama_vaksin' => $user['nama_vaksin'],
+                    'nama_user' => $user['nama_user'],
+                    'tanggal_vaksin' => $user['tanggal_vaksin']
+                ];
+                $this->db->insert('vaksin', $data);
+                $this->db->delete('vaksin_on_progress', ['nik_user' => $nik_input]);
+                if ($this->db->affected_rows() == 1) {
+                    return [TRUE, "Input data NIK berhasil!"];
+                } else {
+                    return [FALSE, "Gagal! Mohon ulangi lagi!"];
+                }
+            } else {
+                return [FALSE, "Data NIK tidak terdaftar pada dosis ini!"];
+            }
+        } else {
+            return [FALSE, "Data NIK tidak terdaftar!"];
         }
     }
 }

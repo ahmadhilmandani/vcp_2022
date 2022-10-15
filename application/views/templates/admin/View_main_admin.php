@@ -63,11 +63,12 @@
     </div>
     <div class="h-auto py-4 bg-white border-1 border-grey-custom pe-5 container-fluid">
         <!-- <h3 class="text-info mb-2"><?= $jenis_vaksin ?></h3> -->
-        <form action="" method="post">
+        <form action="<?= base_url('C_admin/input_user_nik_tb_vaksin'); ?>" method="post">
             <div class="row">
                 <div class="col-md-9">
                     <div class="mb-3">
-                        <input class="form-control form-control-lg" list="datalistOptions" id="exampleDataList" placeholder="Input NIK">
+                        <input class="form-control form-control-lg" autocomplete="off" name="nik-user" list="datalistOptions" id="exampleDataList" placeholder="Input NIK">
+                        <input type="hidden" name="vaksin-user-ke" value="<?= $vaksin_user_ke ?>">
                         <datalist id="datalistOptions">
                             <?php foreach ($suggestion_nik_user_tb_vaksin_on_progress as $row) : ?>
                                 <option value="<?= $row['nik_user']; ?>">
