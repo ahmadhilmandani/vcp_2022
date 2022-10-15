@@ -1,6 +1,6 @@
 <?php if ($click_sidebar === 0) : ?>
     <div id="beranda-konten" data-click-sidebar="0">
-        <h1 class="text-primary mb-4">Hai, Ahmad Hilman Dani</h1>
+        <h1 class="text-primary mb-4">Hai, <?= $this->session->userdata('nama') ?>!</h1>
     </div>
 
     <div class="col-lg-8 col-md-9">
@@ -69,7 +69,7 @@
                     <div class="mb-3">
                         <input class="form-control form-control-lg" list="datalistOptions" id="exampleDataList" placeholder="Input NIK">
                         <datalist id="datalistOptions">
-                            <?php foreach ($nik_user_tb_vaksin_on_progress as $row) : ?>
+                            <?php foreach ($suggestion_nik_user_tb_vaksin_on_progress as $row) : ?>
                                 <option value="<?= $row['nik_user']; ?>">
                                 <?php endforeach; ?>
                         </datalist>
@@ -116,12 +116,12 @@
                         <tbody class="border-0">
                             <?php foreach ($getVaksinUser as $row) : ?>
                                 <tr>
-                                    <td class="text-primary"><?= $row['nik_user']; ?></td>
-                                    <td><?= $row['nama_user']; ?></td>
+                                    <td class="text-primary"><?= $row['nik_id_admin']; ?></td>
+                                    <td><?= $row['nama']; ?></td>
                                     <td><?= $row['tanggal_vaksin']; ?></td>
                                     <td><?= $row['nama_vaksin']; ?></td>
-                                    <td>L</td>
-                                    <td>Mahasiswa</td>
+                                    <td><?= $row['jenis_kelamin']; ?></td>
+                                    <td><?= $row['perkerjaan']; ?></td>
                                     <td><button class="btn btn-outline-danger btn-sm rounded-circle"><i class="bi bi-trash"></i></button></td>
                                 </tr>
                             <?php endforeach; ?>

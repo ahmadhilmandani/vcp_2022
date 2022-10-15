@@ -11,7 +11,7 @@ class C_admin extends CI_Controller
 
     public function admin($vaksin_user = 0)
     {
-        $this->_isExist_tb_vaksin_on_progress();
+        $this->M_vaksin_on->isExist_tb_vaksin_on_progress();
 
         $data["judul"] = "Dashboard Admin";
         $cekagenda = $this->db->get_where('vaksin_on_progress', ['nik_user' => '-'])->row_array();
@@ -29,17 +29,17 @@ class C_admin extends CI_Controller
 
 
         if ($vaksin_user == "Pertama") {
-            $data['getVaksinUser'] = $this->_getVaksinUser($vaksin_user);
-            $data['nik_user_tb_vaksin_on_progress']  = $this->_get_nik_user_tb_vaksin_on_progress($vaksin_user);
+            $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
+            $data['nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
         } else if ($vaksin_user == "Kedua") {
-            $data['getVaksinUser'] = $this->_getVaksinUser("Kedua");
-            $data['nik_user_tb_vaksin_on_progress']  = $this->_get_nik_user_tb_vaksin_on_progress($vaksin_user);
+            $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
+            $data['suggestion_nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
         } else if ($vaksin_user == "Ketiga") {
-            $data['getVaksinUser'] = $this->_getVaksinUser("Ketiga");
-            $data['nik_user_tb_vaksin_on_progress']  = $this->_get_nik_user_tb_vaksin_on_progress($vaksin_user);
+            $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
+            $data['nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
         } else if ($vaksin_user == "Keempat") {
-            $data['getVaksinUser'] = $this->_getVaksinUser("Keempat");
-             $data['nik_user_tb_vaksin_on_progress']  = $this->_get_nik_user_tb_vaksin_on_progress($vaksin_user);
+            $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
+             $data['nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
         }
 
         $data['sidebar_admin'] = $this->load->view('templates/admin/View_sidebar_admin', NULL, TRUE);
@@ -50,16 +50,7 @@ class C_admin extends CI_Controller
         $this->load->view('templates/View_footer');
     }
 
-    private function _getVaksinUser($vaksin)
-    {
-        return $this->db->get_where('vaksin', ['dosis' => $vaksin])->result_array();
-    }
-
-    private function _get_nik_user_tb_vaksin_on_progress($dosis){
-        $this->db->where("nik_user !=", '-');
-        $this->db->where("dosis", $dosis);
-        return $this->db->get('vaksin_on_progress')->result_array();
-    }
+    
 
     public function vaksin_on_progress()
     {
@@ -70,55 +61,5 @@ class C_admin extends CI_Controller
         redirect('C_admin/admin');
     }
 
-    private function _isExist_tb_vaksin_on_progress()
-    {
-        $this->load->dbforge();
-        if ($this->db->table_exists("vaksin_on_progress") === false) {
-            $fields = [
-                'nik_user' => [
-                    'type' => 'VARCHAR',
-                    'constraint' => '50',
-                ],
-                'nama_user' => [
-                    'type' => 'VARCHAR',
-                    'constraint' => '150',
-                ],
-                'dosis' => [
-                    'type' => 'VARCHAR',
-                    'constraint' => '50',
-                ],
-                'nama_vaksin' => [
-                    'type' => 'VARCHAR',
-                    'constraint' => '50',
-                ],
-                'tempat_vaksin' => [
-                    'type' => 'VARCHAR',
-                    'constraint' => '150',
-                ],
-                'tanggal_vaksin' => [
-                    'type'=> 'DATE'
-                ],
-                'tanggal_vaksin_mulai' => [
-                    'type' => 'DATE'
-                ],
-                'nomor_antrian' => [
-                    'type' => 'INT',
-                    'constraint' => '11',
-                    'auto_increment' => TRUE,
-                    'unique' => TRUE,
-                ],
-                'tanggal_vaksin_akhir' => [
-                    'type' => 'DATE'
-                ],
-                'kuota' => [
-                    'type' => 'INT'
-                ]
-            ];
-
-            // $this->dbforge->some_method();
-            $this->dbforge->add_field($fields);
-            $this->dbforge->add_key('nik_user', TRUE);
-            $this->dbforge->create_table('vaksin_on_progress', TRUE);
-        }
-    }
+    
 }

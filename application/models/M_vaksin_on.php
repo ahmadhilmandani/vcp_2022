@@ -30,4 +30,68 @@ class M_vaksin_on extends CI_Model
             return [FALSE, "Gagal! Mohon ulangi lagi!"];
         }
     }
+
+    public function getVaksinUser($vaksin)
+    {
+       return $this->db->query("SELECT user.nik_id_admin, user.nama, user.jenis_kelamin, user.perkerjaan, vaksin.tanggal_vaksin, vaksin.nama_vaksin, vaksin.dosis FROM user, vaksin WHERE vaksin.nik_user = user.nik_id_admin AND vaksin.dosis LIKE '%$vaksin%'")->result_array();
+        // return $this->db->get_where('vaksin', ['dosis' => $vaksin])->result_array();
+    }
+
+    public function get_nik_user_tb_vaksin_on_progress($dosis){
+        $this->db->where("nik_user !=", '-');
+        $this->db->where("dosis", $dosis);
+        return $this->db->get('vaksin_on_progress')->result_array();
+    }
+
+    public function isExist_tb_vaksin_on_progress()
+    {
+        $this->load->dbforge();
+        if ($this->db->table_exists("vaksin_on_progress") === false) {
+            $fields = [
+                'nik_user' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => '50',
+                ],
+                'nama_user' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => '150',
+                ],
+                'dosis' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => '50',
+                ],
+                'nama_vaksin' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => '50',
+                ],
+                'tempat_vaksin' => [
+                    'type' => 'VARCHAR',
+                    'constraint' => '150',
+                ],
+                'tanggal_vaksin' => [
+                    'type'=> 'DATE'
+                ],
+                'tanggal_vaksin_mulai' => [
+                    'type' => 'DATE'
+                ],
+                'nomor_antrian' => [
+                    'type' => 'INT',
+                    'constraint' => '11',
+                    'auto_increment' => TRUE,
+                    'unique' => TRUE,
+                ],
+                'tanggal_vaksin_akhir' => [
+                    'type' => 'DATE'
+                ],
+                'kuota' => [
+                    'type' => 'INT'
+                ]
+            ];
+
+            // $this->dbforge->some_method();
+            $this->dbforge->add_field($fields);
+            $this->dbforge->add_key('nik_user', TRUE);
+            $this->dbforge->create_table('vaksin_on_progress', TRUE);
+        }
+    }
 }

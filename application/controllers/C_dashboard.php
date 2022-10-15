@@ -10,8 +10,12 @@ class C_dashboard extends CI_Controller
 			$data["cek_user_login"] = $this->M_login->index();
 
 			if ($data["cek_user_login"] !== false) {
-				$this->M_login->cek_tabel_vaksin();
-				redirect("C_dashboard/dashboard_user");
+				if($this->session->userdata('is_admin') == 0){
+					$this->M_login->cek_tabel_vaksin();
+					redirect("C_dashboard/dashboard_user");
+				}else{
+					redirect("C_admin/admin");
+				}
 			} else {
 				redirect("C_dashboard/index");
 			}
