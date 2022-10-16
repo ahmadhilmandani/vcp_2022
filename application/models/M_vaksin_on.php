@@ -183,7 +183,7 @@ class M_vaksin_on extends CI_Model
         $get_sum_all_umur = [$jumlah_dewasa, $jumlah_remaja, $jumlah_anak, $jumlah_lansia];
 
         // jumlah user tervaksin
-        $user_tervaksin = $this->db->query("SELECT COUNT(*) as jumlah from vaksin")->result_array();
+        $user_tervaksin = $this->db->query("SELECT COUNT(*) as jumlah from user,vaksin where user.nik_id_admin = vaksin.nik_user AND vaksin.dosis LIKE '%$vaksin%'")->result_array();
 
         return [
             'pertama' => $query_pertama,
