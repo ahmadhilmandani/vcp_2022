@@ -22,7 +22,7 @@ class C_dashboard extends CI_Controller
 		} else {
 			$data["judul"] = "Selamat datang di web kami!";
 			$this->load->view("templates/View_header", $data);
-			$this->load->view("templates/View_login");
+			$this->load->view("combine/View_login");
 			$this->load->view('templates/View_footer');
 		}
 	}

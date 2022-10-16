@@ -61,6 +61,36 @@
         <h1 class="text-primary">Vaksin <?= $vaksin_keberapa ?></h1>
     </div>
     <div class="w-75 h-auto p-4 bg-white border-1 border-grey-custom">
-        <h3 class="text-info mb-2"><? var_dump($nama_vaksin) ?></h3>
+        <?php if ($nama_vaksin) : ?>
+            <div class="alert alert-success">
+                Terimakasih telah melakukan vaksin dosis <?php echo $nama_vaksin[0]["dosis"] ?>
+            </div>
+            <div class="card">
+                <div class="card-body p-5 position-relative">
+                    <p class="text-grey-custom fst-italic m-0 fw-light">Nama :</p>
+                    <p class="mb-3 fs-4"><?php echo $this->session->userdata("nama") ?></p>
+                    <p class="text-grey-custom fst-italic m-0 fw-light">Nama vaksin :</p>
+                    <p class="mb-3 fs-4"><?php echo $nama_vaksin[0]["nama_vaksin"] ?></p>
+                    <p class="text-grey-custom fst-italic m-0 fw-light">Tanggal vaksin :</p>
+                    <p class="fs-4"><?php echo date("d M Y", strtotime($nama_vaksin[0]["tanggal_vaksin"])) ?></p>
+                    <img src="<?= base_url("asset/img/centang.png") ?>" alt="centang" class="position-absolute" style="width: 200px; top:70px; right:150px;">
+                </div>
+            </div>
+        <?php else : ?>
+            <div class="alert alert-danger">
+                Anda belum melakukan vaksin
+            </div>
+            <div class="card">
+                <div class="card-body p-5 position-relative">
+                    <p class="text-grey-custom fst-italic m-0 fw-light">Nama :</p>
+                    <p class="mb-3 fs-4"><?php echo $this->session->userdata("nama") ?></p>
+                    <p class="text-grey-custom fst-italic m-0 fw-light">Nama vaksin :</p>
+                    <p class="mb-3 fs-4">-</p>
+                    <p class="text-grey-custom fst-italic m-0 fw-light">Tanggal vaksin :</p>
+                    <p class="fs-4">-</p>
+                    <img src="<?= base_url("asset/img/silang.png") ?>" alt="centang" class="position-absolute" style="width: 160px; top:70px; right:150px;">
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
 <?php endif; ?>
