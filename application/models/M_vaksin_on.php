@@ -152,6 +152,7 @@ class M_vaksin_on extends CI_Model
         $query_pertama = $query_pertama->result_array();
         $query_kedua = $this->db->query("SELECT COUNT(perkerjaan) AS persen, perkerjaan FROM vaksin WHERE dosis LIKE '%$vaksin%' GROUP BY perkerjaan ORDER BY perkerjaan ");
         $query_kedua = $query_kedua->result_array();
+        // get umur user
         $get_umur_user = $this->db->query("SELECT user.tanggal_lahir, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), user.tanggal_lahir)), '%Y')+0 as umur, COUNT('umur') as jumlah from user,vaksin where user.nik_id_admin = vaksin.nik_user AND vaksin.dosis LIKE '%$vaksin%' GROUP by umur;")->result_array();
 
         $remaja = [0];
@@ -181,10 +182,14 @@ class M_vaksin_on extends CI_Model
 
         $get_sum_all_umur = [$jumlah_dewasa, $jumlah_remaja, $jumlah_anak, $jumlah_lansia];
 
+        // jumlah user tervaksin
+        $user_tervaksin = $this->db->query("SELECT COUNT(*) as jumlah from vaksin")->result_array();
+
         return [
             'pertama' => $query_pertama,
             'kedua' => $query_kedua,
-            'umur' => $get_sum_all_umur
+            'umur' => $get_sum_all_umur,
+            'jumlah_tervaksin' => $user_tervaksin
         ];
     }
 }

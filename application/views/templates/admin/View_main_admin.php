@@ -203,7 +203,7 @@
                             <span>Penduduk Tervaksin di rumah sakit ini:</span>
                             <div class="d-flex align-items-center text-info">
                                 <h1><i class="bi bi-people-fill me-5"></i></h1>
-                                <h2 class="fw-bold">100,1 Juta</h2>
+                                <h2 class="fw-bold"><?= $jumlah_tervaksin[0]['jumlah'] ?> Orang</h2>
                             </div>
                         </div>
 

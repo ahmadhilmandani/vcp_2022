@@ -27,6 +27,7 @@ class C_admin extends CI_Controller
         $data["click_sidebar"] = $vaksin_user;
         $data["vaksin_user_ke"] = $vaksin_user;
         $data['data_statistik_pekerjaan'] = $this->M_vaksin_on->get_data_pekerjaan($vaksin_user);
+        $data['jumlah_tervaksin'] = $data['data_statistik_pekerjaan']['jumlah_tervaksin'];
 
 
         if ($vaksin_user == "Pertama") {
