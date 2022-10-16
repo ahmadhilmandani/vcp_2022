@@ -150,27 +150,32 @@
                                 </nav>
 
                                 <div class="my-3">
-                                    <?php $i=0 ?>
-                                    <?php foreach ($statistik_pekerjaan as $row) : ?>
+                                    <?php $i = 0 ?>
+                                    <?php foreach ($pertama as $row) : ?>
                                         <?php $i++ ?>
-                                        <?php $persen = explode('.',$row['percentage']) ?>
-                                        <div class="row mb-3 ps-3">
-                                            <div class="col-xl-3 col-md-3">
-                                                <span><?= $row['perkerjaan']; ?></span>
-                                                
+                                        <?php for ($i = 0; $i < sizeof($kedua); $i++) : ?>
+                                            <?php $temp = 0 ?>
+                                            <?php if ($kedua[$i]['perkerjaan'] == $row['perkerjaan']) : ?>
+                                                <?php $tempt = $kedua[$i]["persen"] / $row["persen"] * 100; ?>
+                                                <div class="row mb-3 ps-3">
+                                                    <div class="col-xl-3 col-md-3">
+                                                        <span><?= $kedua[$i]['perkerjaan']; ?></span>
 
-                                            </div>
-                                            <div class="col-xl-7 col-md-6 col-sm-12">
-                                                <div class="progress mt-1">
-                                                    <div class="progress-bar <?= $i % 2 == 0 ? 'bg-primary': 'bg-info' ?>" role="progressbar" aria-label="Example with label" style="width: <?= $persen[0] ?>%;" aria-valuenow="<?= $persen[0] ?>" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none"><?= $persen[0] ?>%</small></div>
+
+                                                    </div>
+                                                    <div class="col-xl-7 col-md-6 col-sm-12">
+                                                        <div class="progress mt-1">
+                                                            <div class="progress-bar <?= $i % 2 == 0 ? 'bg-primary' : 'bg-info' ?>" role="progressbar" aria-label="Example with label" style="width: <?= $tempt ?>%;" aria-valuenow="<?= $tempt ?>" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none"><?= $tempt ?>%</small></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-md-3 d-md-block d-none">
+                                                        <span><?= $tempt ?>%</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-xl-2 col-md-3 d-md-block d-none">
-                                                <span><?= $persen[0] ?>%</span>
-                                            </div>
-                                        </div>
+                                            <?php endif; ?>
+                                        <?php endfor; ?>
                                     <?php endforeach; ?>
-                                    
+
                                 </div>
                             </div>
                         </div>

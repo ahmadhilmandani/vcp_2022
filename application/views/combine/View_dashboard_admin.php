@@ -61,7 +61,7 @@ const myChart = new Chart(ctx, {
         labels: ['Dewasa (31-55)', 'Remaja(18-30)', 'Anak(6-17)', 'Belum Vaksin'],
         datasets: [{
             label: '# of Votes',
-            data: [12, 19, 3, 5,],
+            data: [5, 19, 3, 5,],
             backgroundColor: [
                 '#3392F4',
                 '#6CCFE7',

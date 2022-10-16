@@ -100,6 +100,8 @@ class M_vaksin_on extends CI_Model
         $nik_input = $this->input->post('nik-user');
         $vaksin_user_ke = $this->input->post('vaksin-user-ke');
         $user = $this->db->get_where('vaksin_on_progress', ['nik_user' => $nik_input])->row_array();
+        $this->db->select('perkerjaan');
+        $pekerjaan = $this->db->get_where('user', ['nik_id_admin' => $nik_input])->row_array();
 
         if ($user) {
             if ($user['dosis'] == $vaksin_user_ke) {
@@ -109,7 +111,8 @@ class M_vaksin_on extends CI_Model
                     'dosis' => $user['dosis'],
                     'nama_vaksin' => $user['nama_vaksin'],
                     'nama_user' => $user['nama_user'],
-                    'tanggal_vaksin' => $user['tanggal_vaksin']
+                    'tanggal_vaksin' => $user['tanggal_vaksin'],
+                    'perkerjaan' => $pekerjaan['perkerjaan']
                 ];
                 $this->db->insert('vaksin', $data);
                 $this->db->delete('vaksin_on_progress', ['nik_user' => $nik_input]);
@@ -144,12 +147,15 @@ class M_vaksin_on extends CI_Model
 
     public function get_data_pekerjaan($vaksin)
     {
-        $daftar_pekerjaan_user = $this->db->query("SELECT user.perkerjaan, COUNT(user.perkerjaan), COUNT(*), COUNT(user.perkerjaan)/COUNT(*) * 100 AS 'percentage' from user,vaksin WHERE vaksin.nik_user = user.nik_id_admin  AND vaksin.dosis LIKE '%$vaksin%' GROUP BY user.perkerjaan")->result_array();
         
-        
+        $query_pertama = $this->db->query("SELECT COUNT(perkerjaan) AS persen, perkerjaan FROM user GROUP BY perkerjaan ORDER BY perkerjaan");
+        $query_pertama = $query_pertama->result_array();
+        $query_kedua = $this->db->query("SELECT COUNT(perkerjaan) AS persen, perkerjaan FROM vaksin WHERE dosis LIKE '%$vaksin%' GROUP BY perkerjaan ORDER BY perkerjaan ");
+        $query_kedua = $query_kedua->result_array();
+
         return [
-            'daftar_pekerjaan' => $daftar_pekerjaan_user,
-            
+            'pertama' => $query_pertama,
+            'kedua' => $query_kedua
         ];
     }
 }
