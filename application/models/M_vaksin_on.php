@@ -147,15 +147,44 @@ class M_vaksin_on extends CI_Model
 
     public function get_data_pekerjaan($vaksin)
     {
-        
+
         $query_pertama = $this->db->query("SELECT COUNT(perkerjaan) AS persen, perkerjaan FROM user GROUP BY perkerjaan ORDER BY perkerjaan");
         $query_pertama = $query_pertama->result_array();
         $query_kedua = $this->db->query("SELECT COUNT(perkerjaan) AS persen, perkerjaan FROM vaksin WHERE dosis LIKE '%$vaksin%' GROUP BY perkerjaan ORDER BY perkerjaan ");
         $query_kedua = $query_kedua->result_array();
+        $get_umur_user = $this->db->query("SELECT user.tanggal_lahir, DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), user.tanggal_lahir)), '%Y')+0 as umur, COUNT('umur') as jumlah from user,vaksin where user.nik_id_admin = vaksin.nik_user AND vaksin.dosis LIKE '%$vaksin%' GROUP by umur;")->result_array();
+
+        $remaja = [0];
+        $anak = [0];
+        $dewasa = [0];
+        $lansia = [0];
+
+        $jumlah_anak = 0;
+        $jumlah_remaja = 0;
+        $jumlah_dewasa = 0;
+        $jumlah_lansia = 0;
+        foreach ($get_umur_user as $row) {
+            if ($row['umur'] >= 18 && $row['umur'] <= 30) {
+                array_push($remaja, $row['jumlah']);
+                $jumlah_remaja = array_sum($remaja);
+            } elseif ($row['umur'] >= 6 && $row['umur'] < 18) {
+                array_push($anak, $row['jumlah']);
+                $jumlah_anak = array_sum($anak);
+            } elseif ($row['umur'] >= 31 && $row['umur'] <= 55) {
+                array_push($dewasa, $row['jumlah']);
+                $jumlah_dewasa = array_sum($dewasa);
+            }elseif($row['umur']>55){
+                array_push($lansia, $row['jumlah']);
+                $jumlah_lansia = array_sum($lansia);
+            }
+        }
+
+        $get_sum_all_umur = [$jumlah_dewasa, $jumlah_remaja, $jumlah_anak, $jumlah_lansia];
 
         return [
             'pertama' => $query_pertama,
-            'kedua' => $query_kedua
+            'kedua' => $query_kedua,
+            'umur' => $get_sum_all_umur
         ];
     }
 }

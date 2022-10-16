@@ -34,6 +34,7 @@ class C_admin extends CI_Controller
             $data['suggestion_nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
             $data['pertama'] = $data['data_statistik_pekerjaan']['pertama'];
             $data['kedua'] = $data['data_statistik_pekerjaan']['kedua'];
+            $data['umur_user'] = $data['data_statistik_pekerjaan']['umur'];
         } else if ($vaksin_user == "Kedua") {
             $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
             $data['suggestion_nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);

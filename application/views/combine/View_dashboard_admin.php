@@ -53,15 +53,16 @@
     
 </script>
 <!-- script chart js -->
+
 <script>
 const ctx = document.getElementById('myChart');
 const myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ['Dewasa (31-55)', 'Remaja(18-30)', 'Anak(6-17)', 'Belum Vaksin'],
+        labels: ['Dewasa (31-55)', 'Remaja(18-30)', 'Anak(6-17)', 'Lansia(>55)'],
         datasets: [{
             label: '# of Votes',
-            data: [5, 19, 3, 5,],
+            data: <?= json_encode($umur_user);?>,
             backgroundColor: [
                 '#3392F4',
                 '#6CCFE7',
