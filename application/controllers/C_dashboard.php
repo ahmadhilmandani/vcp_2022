@@ -29,19 +29,23 @@ class C_dashboard extends CI_Controller
 
 	public function dashboard_user($vaksin_keberapa = 0)
 	{
-
+		$this->load->model("M_tabel_user");
 		$data["judul"] = "Dashboard User";
 		$data["vaksin_keberapa"] = $vaksin_keberapa;
 		$data["data_click_sidebar"] = $vaksin_keberapa;
 
-		if ($vaksin_keberapa == "Pertama") {
-			$data["nama_vaksin"] = "sinovac";
-		} else if ($vaksin_keberapa == "Kedua") {
-			$data["nama_vaksin"] = "sinovac-2";
-		} else if ($vaksin_keberapa == "Ketiga") {
-			$data["nama_vaksin"] = "sinovac-3";
-		} else if ($vaksin_keberapa == "Keempat") {
-			$data["nama_vaksin"] = "sinovac-4";
+		if ($vaksin_keberapa == "pertama") {
+			$data["nama_vaksin"] = $this->M_tabel_user->index($vaksin_keberapa);
+			// $data["nama_vaksin"] = "sinovac";
+		} else if ($vaksin_keberapa == "kedua") {
+			$data["nama_vaksin"] = $this->M_tabel_user->index($vaksin_keberapa);
+			// $data["nama_vaksin"] = "sinovac-2";
+		} else if ($vaksin_keberapa == "ketiga") {
+			$data["nama_vaksin"] = $this->M_tabel_user->index($vaksin_keberapa);
+			// $data["nama_vaksin"] = "sinovac-3";
+		} else if ($vaksin_keberapa == "keempat") {
+			$data["nama_vaksin"] = $this->M_tabel_user->index($vaksin_keberapa);
+			// $data["nama_vaksin"] = "sinovac-4";
 		}
 
 		$data['sidebar_user'] = $this->load->view('templates/user/View_sidebar_user', NULL, TRUE);

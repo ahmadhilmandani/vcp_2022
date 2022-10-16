@@ -8,16 +8,16 @@ const coba = berandaKonten.getAttribute("data-click-sidebar")
 if (berandaKonten.getAttribute("data-click-sidebar") == 0) {
     clickSidebar(0)
 }
-else if (berandaKonten.getAttribute("data-click-sidebar") == "Pertama") {
+else if (berandaKonten.getAttribute("data-click-sidebar") == "pertama") {
     clickSidebar(1)
 }
-else if (berandaKonten.getAttribute("data-click-sidebar") == "Kedua") {
+else if (berandaKonten.getAttribute("data-click-sidebar") == "kedua") {
     clickSidebar(2)
 }
-else if (berandaKonten.getAttribute("data-click-sidebar") == "Ketiga") {
+else if (berandaKonten.getAttribute("data-click-sidebar") == "ketiga") {
     clickSidebar(3)
 }
-else if (berandaKonten.getAttribute("data-click-sidebar") == "Keempat") {
+else if (berandaKonten.getAttribute("data-click-sidebar") == "keempat") {
     clickSidebar(4)
 }
 

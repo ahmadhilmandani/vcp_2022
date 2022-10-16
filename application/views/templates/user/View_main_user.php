@@ -57,12 +57,10 @@
     <?php endif; ?>
 
 <?php else : ?>
-    <div id="beranda-konten" data-click-sidebar="<?= $data_click_sidebar ?>" onclick="clickSidebar(1)">
-
+    <div id="beranda-konten" data-click-sidebar="<?= $data_click_sidebar ?>">
         <h1 class="text-primary">Vaksin <?= $vaksin_keberapa ?></h1>
-
     </div>
     <div class="w-75 h-auto p-4 bg-white border-1 border-grey-custom">
-        <h3 class="text-info mb-2"><?= $nama_vaksin ?></h3>
+        <h3 class="text-info mb-2"><? var_dump($nama_vaksin) ?></h3>
     </div>
 <?php endif; ?>
