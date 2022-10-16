@@ -1,32 +1,78 @@
 <?php if ($click_sidebar === 0) : ?>
     <div id="beranda-konten" data-click-sidebar="0">
-        <h1 class="text-primary mb-4">Hai, Ahmad Hilman Dani</h1>
+        <h1 class="text-primary mb-4">Hai, <?= $this->session->userdata('nama') ?>!</h1>
     </div>
-    <div class="p-5 border border-grey-light-custom" style="width: 60%;">
-        <h3 class="text-primary mb-4">Daftar Vaksin keempat</h3>
-        <input class="mb-4 border border-grey-custom rounded-1 text-grey-custom d-block w-75 p-2 " type="date" name="tanggal-vaksin" placeholder="Pilih tanggal" required>
-        <button class="btn bg-info px-4 py-2 d-block w-50" type="date" placeholder="Pilih tanggal" required>Daftar Vaksin</button>
+
+    <div class="col-lg-8 col-md-9">
+        <div class="card mb-5">
+            <div class="card-body p-5">
+                <h3 class="text-primary mb-4">Agendakan Vaksin!</h3>
+                <form action="<?= base_url('C_admin/vaksin_on_progress'); ?>" method="post">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <i><label for="vaksinDosis" class="form-label fs-5 text-muted">Vaksin Dosis Ke</label></i>
+                                <select name="dosis-vaksin" required class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="vaksinDosis">
+                                    <option value="Pertama">Pertama</option>
+                                    <option value="Kedua">Kedua</option>
+                                    <option value="Ketiga">Ketiga</option>
+                                    <option value="Keempat">Keempat</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <i><label for="tanggal-vaksin-mulai" class="form-label fs-5 text-muted">Mulainya Vaksin</label></i>
+                                <input type="date" required name="tanggal-mulai" class="form-control border-0 border-bottom border-3 rounded-0" id="tanggal-vaksin-mulai" value="<?= date("Y-m-d"); ?>">
+                            </div>
+                            <div class="mb-3">
+                                <i><label for="kuota" class="form-label fs-5 text-muted">Kuota</label></i>
+                                <input type="number" required name="kuota" class="form-control border-0 border-bottom border-3 rounded-0" id="kuota" value="<?= date("Y-m-d"); ?>">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <i><label for="namaVaksin" class="form-label fs-5 text-muted">Nama Vaksin</label></i>
+                                <select name="nama-vaksin" required class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="namaVaksin">
+                                    <option value="Sinopharm">Sinopharm</option>
+                                    <option value="Astrazheneca">Astrazheneca</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <i><label for="tanggal-vaksin-akhir" class="form-label fs-5 text-muted">Berakhirnya Vaksin</label></i>
+                                <input type="date" required name="tanggal-akhir" class="form-control border-0 border-bottom border-3 rounded-0" id="tanggal-vaksin-akhir" value="<?= date("Y-m-d"); ?>">
+                            </div>
+                            <div class="d-grid gap-2 my-5">
+                                <button type="submit" class="btn bg-info py-2 fs-5" <?= $btn_disable; ?>>Agendakan</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                <?= $agenda_vaksin; ?>
+            </div>
+        </div>
     </div>
+
 
 
 <?php else : ?>
     <div id="beranda-konten" data-click-sidebar="<?= $click_sidebar ?>" onclick="clickSidebar(1)">
         <h1 class="text-primary">Vaksin <?= $vaksin_user_ke ?></h1>
 
+
     </div>
-    <div class="h-auto py-4 bg-white border-1 border-grey-custom pe-5">
+    <div class="h-auto py-4 bg-white border-1 border-grey-custom pe-5 container-fluid">
         <!-- <h3 class="text-info mb-2"><?= $jenis_vaksin ?></h3> -->
-        <form action="" method="post">
+        <form action="<?= base_url('C_admin/input_user_nik_tb_vaksin'); ?>" method="post">
             <div class="row">
                 <div class="col-md-9">
                     <div class="mb-3">
-                        <input class="form-control form-control-lg" list="datalistOptions" id="exampleDataList" placeholder="Input NIK">
+                        <input class="form-control form-control-lg" autocomplete="off" name="nik-user" list="datalistOptions" id="exampleDataList" placeholder="Input NIK">
+                        <input type="hidden" name="vaksin-user-ke" value="<?= $vaksin_user_ke ?>">
                         <datalist id="datalistOptions">
-                            <option value="35121109010002">
-                            <option value="35122109210032">
-                            <option value="35122110210012">
-                            <option value="35122210410029">
-                            <option value="35122510410029">
+                            <?php foreach ($suggestion_nik_user_tb_vaksin_on_progress as $row) : ?>
+                                <option value="<?= $row['nik_user']; ?>">
+                                <?php endforeach; ?>
                         </datalist>
                     </div>
                 </div>
@@ -61,32 +107,30 @@
                             <tr>
                                 <td>NIK</td>
                                 <td>Nama</td>
-                                <td>Tgl Lahir</td>
-                                <td>Kab.</td>
+                                <td>Tgl vaksin</td>
+                                <td>Nama vaksin</td>
                                 <td>L/P</td>
                                 <td>Pekerjaan</td>
                                 <td></td>
                             </tr>
                         </thead>
                         <tbody class="border-0">
-                            <tr>
-                                <td class="text-primary">3529121109010002</td>
-                                <td>RIfan</td>
-                                <td>11/09/01</td>
-                                <td>Sumenep</td>
-                                <td>L</td>
-                                <td>Mahasiswa</td>
-                                <td><button class="btn btn-outline-danger btn-sm rounded-circle"><i class="bi bi-trash"></i></button></td>
-                            </tr>
-                            <tr>
-                                <td class="text-primary">3529121109010002</td>
-                                <td>RIfan</td>
-                                <td>11/09/01</td>
-                                <td>Sumenep</td>
-                                <td>L</td>
-                                <td>Mahasiswa</td>
-                                <td><button class="btn btn-outline-danger btn-sm rounded-circle"><i class="bi bi-trash"></i></button></td>
-                            </tr>
+                            <?php foreach ($getVaksinUser as $row) : ?>
+                                <tr>
+                                    <td class="text-primary"><?= $row['nik_id_admin']; ?></td>
+                                    <td><?= $row['nama']; ?></td>
+                                    <td><?= $row['tanggal_vaksin']; ?></td>
+                                    <td><?= $row['nama_vaksin']; ?></td>
+                                    <td><?= $row['jenis_kelamin']; ?></td>
+                                    <td><?= $row['perkerjaan']; ?></td>
+                                    <td>
+                                        <form action="<?= base_url('C_admin/delete_uservaksin_by_nik/' . $row['id_vaksin']); ?>" method="post">
+                                            <input type="hidden" name="vaksin-user-ke" value="<?= $vaksin_user_ke ?>">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle" onclick="return confirm('Yakin akan menghapus data ini?')"><i class="bi bi-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -95,140 +139,82 @@
 
             <!-- tab statistik -->
             <div class="tab-pane fade" id="statistik-data" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                <div class="card">
-                    <div class="card-body">
-                        <nav>
-                            <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
-                                <button class="nav-link nav-statistik active border-0 text-primary border-bottom fw-bold" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#umur" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Umur</button>
-                                <button class="nav-link nav-statistik text-muted border-0" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#pekerjaan" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Pekerjaan</button>
-                            </div>
-                        </nav>
-                        <div class="tab-content" id="nav-tabContent">
+                <div class="row">
+                    <div class="col-lg-7 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <nav>
+                                    <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
+                                        <button class="nav-link nav-statistik active border-0 text-primary fw-bold fs-5" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#pekerjaan" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Pekerjaan</button>
+                                    </div>
+                                </nav>
 
-                            <!-- tab statistik Umur -->
-                            <div class="tab-pane fade show active" id="umur" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                                <div class="mx-5 my-5">
+                                <div class="my-3">
+                                    <?php $i=0 ?>
+                                    <?php foreach ($statistik_pekerjaan as $row) : ?>
+                                        <?php $i++ ?>
+                                        <?php $persen = explode('.',$row['percentage']) ?>
+                                        <div class="row mb-3 ps-3">
+                                            <div class="col-xl-3 col-md-3">
+                                                <span><?= $row['perkerjaan']; ?></span>
+                                                
 
-                                    <div class="row mb-3">
-                                        <div class="col-xl-11 col-md-9 col-sm-12">
-                                            <div class="progress mt-1">
-                                                <div class="progress-bar bg-info" role="progressbar" aria-label="Example with label" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">25%</small></div>
+                                            </div>
+                                            <div class="col-xl-7 col-md-6 col-sm-12">
+                                                <div class="progress mt-1">
+                                                    <div class="progress-bar <?= $i % 2 == 0 ? 'bg-primary': 'bg-info' ?>" role="progressbar" aria-label="Example with label" style="width: <?= $persen[0] ?>%;" aria-valuenow="<?= $persen[0] ?>" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none"><?= $persen[0] ?>%</small></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-md-3 d-md-block d-none">
+                                                <span><?= $persen[0] ?>%</span>
                                             </div>
                                         </div>
-                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
-                                            <span><small>25%</small></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-xl-11 col-md-9 col-sm-12">
-                                            <div class="progress mt-1">
-                                                <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 55%; background-color: #42A5AB;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">55%</small></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
-                                            <span><small>55%</small></span>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row mb-3">
-                                        <div class="col-xl-11 col-md-9 col-sm-12">
-                                            <div class="progress mt-1">
-                                                <div class="progress-bar bg-info" role="progressbar" aria-label="Example with label" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">35%</small></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
-                                            <span><small>35%</small></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-xl-11 col-md-9 col-sm-12">
-                                            <div class="progress mt-1">
-                                                <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 75%; background-color: #42A5AB;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">75%</small></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
-                                            <span><small>75%</small></span>
-                                        </div>
-                                    </div>
-
+                                    <?php endforeach; ?>
+                                    
                                 </div>
                             </div>
-                            <!-- akhir tab statistik umur -->
-
-                            <!-- tab statistik pekerjaan -->
-                            <div class="tab-pane fade" id="pekerjaan" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-
-                                <div class="mx-5 my-5">
-
-                                    <div class="row mb-3">
-                                        <div class="col-xl-11 col-md-9 col-sm-12">
-                                            <div class="progress mt-1">
-                                                <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 75%; background-color: #42A5AB;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">75%</small></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
-                                            <span><small>75%</small></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-xl-11 col-md-9 col-sm-12">
-                                            <div class="progress mt-1">
-                                                <div class="progress-bar bg-info" role="progressbar" aria-label="Example with label" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">25%</small></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
-                                            <span><small>25%</small></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-xl-11 col-md-9 col-sm-12">
-                                            <div class="progress mt-1">
-                                                <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 55%; background-color: #42A5AB;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">55%</small></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
-                                            <span><small>55%</small></span>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row mb-3">
-                                        <div class="col-xl-11 col-md-9 col-sm-12">
-                                            <div class="progress mt-1">
-                                                <div class="progress-bar bg-info" role="progressbar" aria-label="Example with label" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">35%</small></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
-                                            <span><small>35%</small></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-xl-11 col-md-9 col-sm-12">
-                                            <div class="progress mt-1">
-                                                <div class="progress-bar" role="progressbar" aria-label="Example with label" style="width: 85%; background-color: #42A5AB;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><small class="d-sm-block d-md-none">85%</small></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-1 col-md-3 d-md-block d-none">
-                                            <span><small>85%</small></span>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!-- akhir statistik pekerjaan -->
-
                         </div>
                     </div>
+
+                    <article class="col-lg-5">
+                        <h4 class="text-primary fw-bold">Data Penduduk Indonesia</h4>
+
+                        <div id="total-penduduk" class="mb-3">
+                            <span>Total Penduduk:</span>
+                            <div class="d-flex align-items-center" style="color: #5CE6A4;">
+                                <h1><i class="bi bi-people-fill me-5"></i></h1>
+                                <h2 class="fw-bold">273,5 Juta</h2>
+                            </div>
+                        </div>
+
+                        <div id="total-penduduk-tervaksin" class="mb-3">
+                            <span>Total Penduduk Tervaksin:</span>
+                            <div class="d-flex align-items-center text-primary">
+                                <h1><i class="bi bi-people-fill me-5"></i></h1>
+                                <h2 class="fw-bold">100,1 Juta</h2>
+                            </div>
+                        </div>
+
+                        <div id="total-penduduk-tervaksin" class="mb-3">
+                            <span>Penduduk Tervaksin di rumah sakit ini:</span>
+                            <div class="d-flex align-items-center text-info">
+                                <h1><i class="bi bi-people-fill me-5"></i></h1>
+                                <h2 class="fw-bold">100,1 Juta</h2>
+                            </div>
+                        </div>
+
+                        <!-- card umur and chart js -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary fw-bold">Umur</h5>
+                                <canvas id="myChart"></canvas>
+                            </div>
+                        </div>
+
+                    </article>
                 </div>
             </div>
+            <!-- akhir tab statistik -->
 
         </div>
     </div>
