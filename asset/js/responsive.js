@@ -1,4 +1,4 @@
-
+const offcanvas = document.getElementById("staticBackdrop");
 
 const deleteElement = () => {
     if (window.innerWidth < 768) {

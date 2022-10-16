@@ -1,5 +1,5 @@
 <script src="<?= base_url('asset/js/sweetalert2.all.min.js') ?>"></script>
-<script src="cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
 
