@@ -8,16 +8,16 @@ const coba = berandaKonten.getAttribute("data-click-sidebar")
 if (berandaKonten.getAttribute("data-click-sidebar") == 0) {
     clickSidebar(0)
 }
-else if (berandaKonten.getAttribute("data-click-sidebar") == "pertama") {
+else if (berandaKonten.getAttribute("data-click-sidebar") == "pertama" || berandaKonten.getAttribute("data-click-sidebar") == "Pertama") {
     clickSidebar(1)
 }
-else if (berandaKonten.getAttribute("data-click-sidebar") == "kedua") {
+else if (berandaKonten.getAttribute("data-click-sidebar") == "kedua" || berandaKonten.getAttribute("data-click-sidebar") == "Kedua") {
     clickSidebar(2)
 }
-else if (berandaKonten.getAttribute("data-click-sidebar") == "ketiga") {
+else if (berandaKonten.getAttribute("data-click-sidebar") == "ketiga"|| berandaKonten.getAttribute("data-click-sidebar") == "Ketiga") {
     clickSidebar(3)
 }
-else if (berandaKonten.getAttribute("data-click-sidebar") == "keempat") {
+else if (berandaKonten.getAttribute("data-click-sidebar") == "keempat" || berandaKonten.getAttribute("data-click-sidebar") == "Keempat") {
     clickSidebar(4)
 }
 
@@ -45,4 +45,3 @@ function clickSidebar(parameterIndex) {
         }
     }
 }
-
