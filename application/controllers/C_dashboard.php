@@ -52,7 +52,6 @@ class C_dashboard extends CI_Controller
 		$this->load->view('templates/View_footer');
 	}
 
-
 	public function logout()
 	{
 		$this->session->sess_destroy();
