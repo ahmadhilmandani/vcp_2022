@@ -11,12 +11,12 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <i><label for="vaksinDosis" class="form-label fs-5 text-muted">Vaksin Dosis Ke</label></i>
+                                <i><label for="vaksinDosis" class="form-label fs-5 text-muted">Vaksin dosis ke</label></i>
                                 <select name="dosis-vaksin" required class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="vaksinDosis" <?= $btn_disable; ?>>
-                                    <option value="Pertama">Pertama</option>
-                                    <option value="Kedua">Kedua</option>
-                                    <option value="Ketiga">Ketiga</option>
-                                    <option value="Keempat">Keempat</option>
+                                    <option value="pertama">Pertama</option>
+                                    <option value="kedua">Kedua</option>
+                                    <option value="ketiga">Ketiga</option>
+                                    <option value="keempat">Keempat</option>
                                 </select>
                             </div>
 
@@ -33,8 +33,16 @@
                             <div class="mb-3">
                                 <i><label for="namaVaksin" class="form-label fs-5 text-muted">Nama Vaksin</label></i>
                                 <select name="nama-vaksin" required class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="namaVaksin" <?= $btn_disable; ?>>
-                                    <option value="Sinopharm">Sinopharm</option>
-                                    <option value="Astrazheneca">Astrazheneca</option>
+                                    <option value="sinopharm" selected>Sinopharm</option>
+                                    <option value="astrazheneca">AstraZheneca</option>
+                                    <option value="sinovac">Sinovac</option>
+                                    <option value="moderna">Moderna</option>
+                                    <option value="pfizer">Pfizer</option>
+                                    <option value="novavax">Novavax</option>
+                                    <option value="sputnik-V">Sputnik-V</option>
+                                    <option value="janssen">Janssen</option>
+                                    <option value="convidencia">Convidencia</option>
+                                    <option value="zifivax">Zifivax</option>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -87,7 +95,7 @@
 
 <?php else : ?>
     <div id="beranda-konten" data-click-sidebar="<?= $click_sidebar ?>" onclick="clickSidebar(1)">
-        <h1 class="text-primary">Vaksin <?= $vaksin_user_ke ?></h1>
+        <h1 class="text-primary">Vaksin <?= ucwords($vaksin_user_ke) ?></h1>
 
 
     </div>
@@ -147,11 +155,11 @@
                             <?php foreach ($getVaksinUser as $row) : ?>
                                 <tr>
                                     <td class="text-primary"><?= $row['nik_id_admin']; ?></td>
-                                    <td><?= $row['nama']; ?></td>
+                                    <td><?= ucwords($row['nama']); ?></td>
                                     <td><?= $row['tanggal_vaksin']; ?></td>
-                                    <td><?= $row['nama_vaksin']; ?></td>
-                                    <td><?= $row['jenis_kelamin']; ?></td>
-                                    <td><?= $row['perkerjaan']; ?></td>
+                                    <td><?= ucwords($row['nama_vaksin']); ?></td>
+                                    <td><?= ucwords($row['jenis_kelamin']); ?></td>
+                                    <td><?= ucwords($row['perkerjaan']); ?></td>
                                     <td>
                                         <form action="<?= base_url('C_admin/delete_uservaksin_by_nik/' . $row['id_vaksin']); ?>" method="post">
                                             <input type="hidden" name="vaksin-user-ke" value="<?= $vaksin_user_ke ?>">
@@ -188,7 +196,7 @@
                                                 <?php $tempt = $kedua[$i]["persen"] / $row["persen"] * 100; ?>
                                                 <div class="row mb-3 ps-3">
                                                     <div class="col-xl-3 col-md-3">
-                                                        <span><?= $kedua[$i]['perkerjaan']; ?></span>
+                                                        <span><?= ucwords($kedua[$i]['perkerjaan']); ?></span>
 
 
                                                     </div>
