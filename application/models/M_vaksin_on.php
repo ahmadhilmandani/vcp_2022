@@ -164,6 +164,7 @@ class M_vaksin_on extends CI_Model
         $jumlah_remaja = 0;
         $jumlah_dewasa = 0;
         $jumlah_lansia = 0;
+
         foreach ($get_umur_user as $row) {
             if ($row['umur'] >= 18 && $row['umur'] <= 30) {
                 array_push($remaja, $row['jumlah']);
@@ -192,4 +193,5 @@ class M_vaksin_on extends CI_Model
             'jumlah_tervaksin' => $user_tervaksin
         ];
     }
+
 }

@@ -1,3 +1,4 @@
+
 <?php if ($click_sidebar === 0) : ?>
     <div id="beranda-konten" data-click-sidebar="0">
         <h1 class="text-primary mb-4">Hai, <?= $this->session->userdata('nama') ?>!</h1>

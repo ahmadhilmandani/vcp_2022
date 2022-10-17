@@ -1,65 +1,69 @@
-<div class="container-fluid mt-5">
-     <div class="row d-flex justify-content-center position-relative">
-          <div class="col-2 alert alert-danger position-sticky top-0 start-0" style="height:fit-content;">
-               <h4 class="h4">Penting!</h4>
+<div class="container d-flex justify-content-center">
+     <div class="row my-lg-5">
+          <div class="col-lg-3 col-sm-2 alert alert-danger position-sticky top-0 start-0 mt-lg-5" style="height:fit-content;">
+               <h4 class="">Penting!</h4>
                <p>tanda (*) harus diisi data sesuai KTP dengan benar!</p>
           </div>
-          <form action="<?= base_url('C_register/register_user') ?>" method="POST" class="col-6">
-               <h1 class="h1">Register</h1>
-               <div class="row">
-                    <div class="my-3 mx-2 col-sm-12">
-                         <label for="nik">NIK sesuai KTP<span>*</span></label><br>
-                         <input type="text" placeholder="NIK" name="nik" id="nik" required class="mt-2">
+          <div class="col-lg-9 ps-lg-4">
+               <form action="<?= base_url('C_register/register_user') ?>" method="POST">
+                    <h1 class="mb-3">Register</h1>
+                    <div class="mb-3">
+                         <label for="NIK" class="form-label fs-5">NIK <span class="text-danger fs-6">*</span></label>
+                         <input type="text" name="NIK" class="form-control ps-4" id="NIK" placeholder="NIK" required>
+                    </div>
+                    <div class="mb-3">
+                         <label for="Sandi" class="form-label fs-5">Sandi <span class="text-danger fs-6">*</span></label>
+                         <input type="text" name="sandi" class="form-control ps-4" id="Sandi" placeholder="Sandi" required>
+                    </div>
+                    <div class="mb-3">
+                         <label for="nama" class="form-label fs-5">Nama Lengkap <span class="text-danger fs-6">*</span></label>
+                         <input type="text" name="nama" class="form-control ps-4" id="nama" placeholder="Nama Lengkap" required>
+                    </div>
+                    <div class="mb-3">
+                         <label for="tanggal_lahir" class="form-label fs-5">Tanggal Lahir <span class="text-danger fs-6">*</span></label>
+                         <input type="date" name="tanggal_lahir" class="form-control ps-4" id="tanggal_lahir" placeholder="Tanggal Lahir" value="<?= date('Y-m-d'); ?>" required>
                     </div>
 
-                    <div class="my-3 mx-2 col-sm-12">
-                         <label for="sandi">Sandi<span>*</span></label><br>
-                         <input type="password" placeholder="Sandi" name="sandi" id="sandi" required class="mt-2">
+
+                    <label class="form-label fs-5">Jenis Kelamin <span class="text-danger fs-6">*</span></label>
+                    <div class="mb-3">
+                         <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="jenis_kelamin" id="jenis_kelamin_l" value="l">
+                              <label class="form-check-label" for="jenis_kelamin_l">Laki-laki</label>
+                         </div>
+                         <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="jenis_kelamin" id="jenis_kelamin_p" value="p">
+                              <label class="form-check-label" for="jenis_kelamin_p">Perempuan</label>
+                         </div>
                     </div>
 
-                    <div class="my-3 mx-2 col-sm-12">
-                         <label for="nama">Nama Lengkap Sesuai KTP <span>*</span></label><br>
-                         <input type="text" placeholder="Nana lengkap" name="nama" id="nama" required class="mt-2">
+                    <div class="mb-3">
+                         <label for="alamat" class="form-label fs-5">Alamat Lengkap <span class="text-danger fs-6">*</span></label>
+                         <input type="text" name="alamat" class="form-control ps-4" id="alamat" placeholder="Alamat Lengkap" required>
                     </div>
 
-                    <div class="my-3 mx-2 col-sm-12">
-                         <label for="tanggal_lahir">Tanggal Lahir sesuai KTP<span>*</span></label><br>
-                         <input type="date" placeholder="Tanggal lahir" name="tanggal_lahir" id="tanggal_lahir" required class="mt-2">
+                    <div class="mb-3">
+                         <label for="perkerjaan" class="form-label fs-5">Pekerjaan <span class="text-danger fs-6">*</span></label>
+                         <select class="form-select" name="perkerjaan" id="perkerjaan" aria-label="Default select example">
+                              <option value="tenaga medis" selected>Tenaga medis</option>
+                              <option value="pns">PNS</option>
+                              <option value="mahasiswa/pelajar">Mahasiswa/pelajar</option>
+                              <option value="wiraswasta">Wiraswasta</option>
+                              <option value="wirausaha">Wirausaha</option>
+                              <option value="guru">Guru</option>
+                              <option value="pengacara">Pengacara</option>
+                              <option value="freelance">Freelance</option>
+                              <option value="lainnya">Lainnya ...</option>
+                         </select>
                     </div>
-               </div>
 
 
-               <div class="my-3 mx-2">
-                    <div>
-                         <label>Jenis Kelamin sesuai KTP<span>*</span></label>
+                    <div class="d-grid gap-2">
+                         <button class="btn btn-info" type="submit">DAFTAR</button>
+                         <a href="<?= base_url('C_dashboard') ?>" class="text-dark btn btn-outline-info" type="button">Kembali</a>
                     </div>
-                    <div>
-                         <input type="radio" name="jenis_kelamin" value="l" required>
-                         <label>laki-laki</label>
 
-                         <input type="radio" name="jenis_kelamin" value="p" required>
-                         <label>female</label>
-                    </div>
-               </div>
-
-               <div class="my-3 mx-2">
-                    <label for="alamat">Alamat</label><br>
-                    <input type="text" placeholder="Alamat" name="alamat" id="alamat" required class="mt-2">
-               </div>
-
-               <div class="my-3 mx-2">
-                    <label for="perkerjaan">Pekerjaan</label><br>
-                    <select id="perkerjaan" name="perkerjaan" class="mt-2">
-                         <option value="pns">PNS</option>
-                         <option value="tenaga medis">Tenaga medis</option>
-                         <option value="mahasiswa">Mahasiswa</option>
-                    </select>
-               </div>
-
-               <div class="my-3 mx-2">
-                    <a href="<?= base_url('C_dashboard') ?>" class="text-dark btn btn-outline-info">kembali</a>
-                    <button type="submit" class="btn btn-info">DAFTAR</button>
-               </div>
-          </form>
+               </form>
+          </div>
      </div>
 </div>

@@ -30,25 +30,25 @@ class C_admin extends CI_Controller
         $data['jumlah_tervaksin'] = $data['data_statistik_pekerjaan']['jumlah_tervaksin'];
 
 
-        if ($vaksin_user == "Pertama") {
+        if ($vaksin_user == "pertama") {
             $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
             $data['suggestion_nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
             $data['pertama'] = $data['data_statistik_pekerjaan']['pertama'];
             $data['kedua'] = $data['data_statistik_pekerjaan']['kedua'];
             $data['umur_user'] = $data['data_statistik_pekerjaan']['umur'];
-        } else if ($vaksin_user == "Kedua") {
+        } else if ($vaksin_user == "kedua") {
             $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
             $data['suggestion_nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
             $data['pertama'] = $data['data_statistik_pekerjaan']['pertama'];
             $data['kedua'] = $data['data_statistik_pekerjaan']['kedua'];
             $data['umur_user'] = $data['data_statistik_pekerjaan']['umur'];
-        } else if ($vaksin_user == "Ketiga") {
+        } else if ($vaksin_user == "ketiga") {
             $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
             $data['suggestion_nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
             $data['pertama'] = $data['data_statistik_pekerjaan']['pertama'];
             $data['kedua'] = $data['data_statistik_pekerjaan']['kedua'];
             $data['umur_user'] = $data['data_statistik_pekerjaan']['umur'];
-        } else if ($vaksin_user == "Keempat") {
+        } else if ($vaksin_user == "keempat") {
             $data['getVaksinUser'] = $this->M_vaksin_on->getVaksinUser($vaksin_user);
             $data['suggestion_nik_user_tb_vaksin_on_progress']  = $this->M_vaksin_on->get_nik_user_tb_vaksin_on_progress($vaksin_user);
             $data['pertama'] = $data['data_statistik_pekerjaan']['pertama'];
