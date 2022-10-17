@@ -36,16 +36,12 @@ class C_dashboard extends CI_Controller
 
 		if ($vaksin_keberapa == "pertama") {
 			$data["nama_vaksin"] = $this->M_tabel_user->index($vaksin_keberapa);
-			// $data["nama_vaksin"] = "sinovac";
 		} else if ($vaksin_keberapa == "kedua") {
 			$data["nama_vaksin"] = $this->M_tabel_user->index($vaksin_keberapa);
-			// $data["nama_vaksin"] = "sinovac-2";
 		} else if ($vaksin_keberapa == "ketiga") {
 			$data["nama_vaksin"] = $this->M_tabel_user->index($vaksin_keberapa);
-			// $data["nama_vaksin"] = "sinovac-3";
 		} else if ($vaksin_keberapa == "keempat") {
 			$data["nama_vaksin"] = $this->M_tabel_user->index($vaksin_keberapa);
-			// $data["nama_vaksin"] = "sinovac-4";
 		}
 
 		$data['sidebar_user'] = $this->load->view('templates/user/View_sidebar_user', NULL, TRUE);
@@ -61,13 +57,6 @@ class C_dashboard extends CI_Controller
 	{
 		$this->session->sess_destroy();
 		redirect('C_dashboard');
-	}
-
-	public function sweet_alert($title, $text, $icon)
-	{
-		$this->session->set_userdata('flash_title', $title);
-		$this->session->set_userdata('flash_text', $text);
-		$this->session->set_userdata('flash_icon', $icon);
 	}
 
 	public function daftar_user()
