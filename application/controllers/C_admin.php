@@ -14,10 +14,15 @@ class C_admin extends CI_Controller
         $this->M_vaksin_on->isExist_tb_vaksin_on_progress();
 
         $data["judul"] = "Dashboard Admin";
-        $cekagenda = $this->db->get_where('vaksin_on_progress', ['nik_user' => '-'])->row_array();
+        $cekagenda = $this->M_vaksin_on->get_agenda_vaksin();
+        $data['tanggal_vaksin'] = $cekagenda;
 
         if ($cekagenda) {
-            $data['agenda_vaksin'] = "<div class='alert alert-warning' role='alert'>Sedang ada agenda vaksin Dosis <b>" . $cekagenda['dosis'] . "</b> s.d tanggal <b>" . $cekagenda['tanggal_vaksin_akhir'] . "</b> </div>";
+            $data['agenda_vaksin'] = "<div class='alert alert-warning' role='alert'>Sedang ada agenda vaksin Dosis <b>" . $cekagenda['dosis'] . "</b> s.d tanggal <b>" . $cekagenda['tanggal_vaksin_akhir'] . "</b> 
+            <button type='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#updateTanggal'>
+            <i class='bi bi-pencil-square'></i> Ubah agenda vaksin
+            </button> Sisa Kuota vaksin : <b>" . $cekagenda['kuota'] . "</b>
+            </div>";
             $data['btn_disable'] = 'disabled';
         } else {
             $data['btn_disable'] = '';
@@ -88,5 +93,13 @@ class C_admin extends CI_Controller
         $result_delete_nik_vaksin = $this->M_vaksin_on->delete_uservaksin_by_nik($id_vaksin);
         $this->alert_lib->alert_success_or_error($result_delete_nik_vaksin[0], $result_delete_nik_vaksin[1]);
         redirect('C_admin/admin/' . $this->input->post('vaksin-user-ke'));
+    }
+
+    public function ubah_agenda()
+    {
+        $this->load->library("Alert_lib");
+        $result_update_agenda = $this->M_vaksin_on->update_agenda_vaksin();
+        $this->alert_lib->alert_success_or_error($result_update_agenda[0], $result_update_agenda[1]);
+        redirect('C_admin/admin/');
     }
 }

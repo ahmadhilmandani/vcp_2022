@@ -1,10 +1,9 @@
-
 <?php if ($click_sidebar === 0) : ?>
     <div id="beranda-konten" data-click-sidebar="0">
         <h1 class="text-primary mb-4">Hai, <?= $this->session->userdata('nama') ?>!</h1>
     </div>
 
-    <div class="col-lg-8 col-md-9">
+    <div class="col-lg-9">
         <div class="card mb-5">
             <div class="card-body p-5">
                 <h3 class="text-primary mb-4">Agendakan Vaksin!</h3>
@@ -27,7 +26,7 @@
                             </div>
                             <div class="mb-3">
                                 <i><label for="kuota" class="form-label fs-5 text-muted">Kuota</label></i>
-                                <input type="number" required name="kuota" class="form-control border-0 border-bottom border-3 rounded-0" id="kuota" value="<?= date("Y-m-d"); ?>">
+                                <input type="number" required name="kuota" class="form-control border-0 border-bottom border-3 rounded-0" id="kuota">
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -54,7 +53,37 @@
         </div>
     </div>
 
-
+    <!-- Modal update data tanggal agenda -->
+    <div class="modal fade" id="updateTanggal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="<?= base_url('C_admin/ubah_agenda'); ?>" method="post">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Ubah Agenda vaksin</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="tanggal-vaksin-mulai" class="form-label">Tanggal Mulai Vaksin</label>
+                            <input type="date" required name="tanggal-mulai" class="form-control" id="tanggal-vaksin-mulai" value="<?= $tanggal_vaksin['tanggal_vaksin_mulai']; ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggal-vaksin-akhir" class="form-label">Tanggal Berakhir Vaksin</label>
+                            <input type="date" required name="tanggal-akhir" class="form-control" id="tanggal-vaksin-akhir" value="<?= $tanggal_vaksin['tanggal_vaksin_akhir']; ?>">
+                        </div>
+                        <div class="mb-3">
+                                <label for="kuota" class="form-label">Kuota</label>
+                                <input type="number" required name="kuota" class="form-control" id="kuota" value="<?= $tanggal_vaksin['kuota']; ?>">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-info">Update data</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 <?php else : ?>
     <div id="beranda-konten" data-click-sidebar="<?= $click_sidebar ?>" onclick="clickSidebar(1)">
@@ -223,5 +252,8 @@
 
         </div>
     </div>
+
+
+
 
 <?php endif; ?>

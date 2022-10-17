@@ -31,6 +31,11 @@ class M_vaksin_on extends CI_Model
         }
     }
 
+    public function get_agenda_vaksin()
+    {
+        return $this->db->get_where('vaksin_on_progress', ['nik_user' => '-'])->row_array();
+    }
+
     public function getVaksinUser($vaksin)
     {
         return $this->db->query("SELECT user.nik_id_admin, user.nama, user.jenis_kelamin, user.perkerjaan, vaksin.tanggal_vaksin, vaksin.nama_vaksin, vaksin.dosis, vaksin.id_vaksin FROM user, vaksin WHERE vaksin.nik_user = user.nik_id_admin AND vaksin.dosis LIKE '%$vaksin%'")->result_array();
@@ -97,8 +102,8 @@ class M_vaksin_on extends CI_Model
 
     public function input_nik_to_vaksin()
     {
-        $nik_input = $this->input->post('nik-user');
-        $vaksin_user_ke = $this->input->post('vaksin-user-ke');
+        $nik_input = $this->input->post('nik-user',true);
+        $vaksin_user_ke = $this->input->post('vaksin-user-ke',true);
         $user = $this->db->get_where('vaksin_on_progress', ['nik_user' => $nik_input])->row_array();
         $this->db->select('perkerjaan');
         $pekerjaan = $this->db->get_where('user', ['nik_id_admin' => $nik_input])->row_array();
@@ -107,7 +112,7 @@ class M_vaksin_on extends CI_Model
             if ($user['dosis'] == $vaksin_user_ke) {
                 $data = [
                     'id_vaksin' => '',
-                    'nik_user' => htmlspecialchars($nik_input, true),
+                    'nik_user' => htmlspecialchars($nik_input),
                     'dosis' => $user['dosis'],
                     'nama_vaksin' => $user['nama_vaksin'],
                     'nama_user' => $user['nama_user'],
@@ -145,6 +150,26 @@ class M_vaksin_on extends CI_Model
         }
     }
 
+    public function update_agenda_vaksin()
+    {
+        $tanggal_mulai = htmlspecialchars($this->input->post('tanggal-mulai',true));
+        $tanggal_akhir = htmlspecialchars($this->input->post('tanggal-akhir',true));
+        $kuota = htmlspecialchars($this->input->post('kuota',true));
+
+        $data = [
+            'tanggal_vaksin_mulai' => $tanggal_mulai,
+            'tanggal_vaksin_akhir' => $tanggal_akhir,
+            'kuota' => $kuota
+        ];
+        $this->db->where('nik_user', '-');
+        $this->db->update('vaksin_on_progress', $data);
+        if ($this->db->affected_rows() == 1) {
+            return [TRUE, "Ubah Agenda Berhasil!"];
+        } else {
+            return [FALSE, "Ubah Agenda Gagal!"];
+        }
+    }
+
     public function get_data_pekerjaan($vaksin)
     {
 
@@ -175,7 +200,7 @@ class M_vaksin_on extends CI_Model
             } elseif ($row['umur'] >= 31 && $row['umur'] <= 55) {
                 array_push($dewasa, $row['jumlah']);
                 $jumlah_dewasa = array_sum($dewasa);
-            }elseif($row['umur']>55){
+            } elseif ($row['umur'] > 55) {
                 array_push($lansia, $row['jumlah']);
                 $jumlah_lansia = array_sum($lansia);
             }
@@ -193,5 +218,4 @@ class M_vaksin_on extends CI_Model
             'jumlah_tervaksin' => $user_tervaksin
         ];
     }
-
 }
