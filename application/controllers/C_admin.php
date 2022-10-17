@@ -18,10 +18,10 @@ class C_admin extends CI_Controller
         $data['tanggal_vaksin'] = $cekagenda;
 
         if ($cekagenda) {
-            $data['agenda_vaksin'] = "<div class='alert alert-warning' role='alert'>Sedang ada agenda vaksin dosis <b>" . ucwords($cekagenda['dosis']) . "</b> s.d tanggal <b>" . $cekagenda['tanggal_vaksin_akhir'] . "</b> 
+            $data['agenda_vaksin'] = "<div class='alert alert-warning' role='alert'>Sedang ada agenda vaksin dosis <b>" . ucwords($cekagenda['dosis']) . "</b> s.d tanggal <b>" . date('d M Y', strtotime($cekagenda['tanggal_vaksin_akhir'])) . "</b> 
             <button type='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#updateTanggal'>
-            <i class='bi bi-pencil-square'></i> Ubah agenda vaksin
-            </button> 
+            <i class='bi bi-pencil-square'></i> Ubah agenda
+            </button><br>
             Sisa kuota vaksin : <b>" . ucwords($cekagenda['kuota']) . "</b><br>
             Jenis vaksin : <b>" . ucwords($cekagenda['nama_vaksin']) . "</b><br>
             </div>";
