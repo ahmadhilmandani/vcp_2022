@@ -13,13 +13,11 @@
       <section class="offcanvas-header">
         <button type="button" class="btn-close d-inline-block d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </section>
-      <!-- JANGAN LUPA KASIH PENGECAKAN SESSION YANG DI SET BERNILAI ADMIN ATAU USER -->
       <?= $sidebar_user ?>
 
     </div>
 
     <div class="container-lg col-12 col-md-10 d-sm-block mt-5 ps-lg-5">
-      <!-- JANGAN LUPA KASIH PENGECAKAN SESSION YANG DI SET BERNILAI ADMIN ATAU USER -->
       <?= $vaksin_user ?>
 
 

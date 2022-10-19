@@ -42,11 +42,11 @@ class M_login extends CI_Model
                 $this->session->set_userdata('tidak_vaksin', 'Belum ada vaksin yang bisa anda ikuti');
             }
             // jika user BELUM MELAKUKAN vaksin
-            else{
+            else {
                 // query untuk persiapan cek apakah user sudah daftar vaksin yang sedang dilaksanakan
                 $this->db->select('dosis, nama_vaksin, tempat_vaksin, tanggal_vaksin, nomor_antrian');
                 $this->db->where("nik_user", $post_nik);
-                $query = $this->db->get("vaksin_on_progress",1);
+                $query = $this->db->get("vaksin_on_progress", 1);
 
                 // jika user SUDAH DAFTAR vaksin yang sedang dilaksanakan
                 if ($query->num_rows() > 0) {
@@ -62,23 +62,24 @@ class M_login extends CI_Model
                     $this->session->set_userdata($session_vaksin_on_progress);
                 }
                 // jika user BELUM DAFTAR
-                else{
+                else {
                     // kayanya ini bisa dijadikan fungsi deh
-                    $this->db->select('dosis, nama_vaksin');
+                    $this->db->select('dosis, nama_vaksin, tanggal_vaksin_mulai, tanggal_vaksin_akhir');
                     $this->db->where("nik_user", "-");
-                    $query = $this->db->get("vaksin_on_progress",1);
+                    $query = $this->db->get("vaksin_on_progress", 1);
 
                     foreach ($query->result() as $row) {
                         $session = [
                             "daftar_vaksin" => $row->dosis,
                             "nama_vaksin" => $row->nama_vaksin,
+                            "tanggal_vaksin_mulai" => $row->tanggal_vaksin_mulai,
+                            "tanggal_vaksin_akhir" => $row->tanggal_vaksin_akhir,
                         ];
                     };
                     $this->session->set_userdata($session);
                 }
             }
-        }
-        else{
+        } else {
             $this->session->set_userdata('tidak_vaksin', 'Belum ada vaksin yang bisa anda ikuti');
         }
     }
