@@ -1,10 +1,9 @@
-
 <?php if ($click_sidebar === 0) : ?>
     <div id="beranda-konten" data-click-sidebar="0">
         <h1 class="text-primary mb-4">Hai, <?= $this->session->userdata('nama') ?>!</h1>
     </div>
 
-    <div class="col-lg-8 col-md-9">
+    <div class="col-lg-9">
         <div class="card mb-5">
             <div class="card-body p-5">
                 <h3 class="text-primary mb-4">Agendakan Vaksin!</h3>
@@ -12,35 +11,43 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <i><label for="vaksinDosis" class="form-label fs-5 text-muted">Vaksin Dosis Ke</label></i>
-                                <select name="dosis-vaksin" required class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="vaksinDosis">
-                                    <option value="Pertama">Pertama</option>
-                                    <option value="Kedua">Kedua</option>
-                                    <option value="Ketiga">Ketiga</option>
-                                    <option value="Keempat">Keempat</option>
+                                <i><label for="vaksinDosis" class="form-label fs-5 text-muted">Vaksin dosis ke</label></i>
+                                <select name="dosis-vaksin" required class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="vaksinDosis" <?= $btn_disable; ?>>
+                                    <option value="pertama">Pertama</option>
+                                    <option value="kedua">Kedua</option>
+                                    <option value="ketiga">Ketiga</option>
+                                    <option value="keempat">Keempat</option>
                                 </select>
                             </div>
 
                             <div class="mb-3">
                                 <i><label for="tanggal-vaksin-mulai" class="form-label fs-5 text-muted">Mulainya Vaksin</label></i>
-                                <input type="date" required name="tanggal-mulai" class="form-control border-0 border-bottom border-3 rounded-0" id="tanggal-vaksin-mulai" value="<?= date("Y-m-d"); ?>">
+                                <input type="date" required name="tanggal-mulai" class="form-control border-0 border-bottom border-3 rounded-0" id="tanggal-vaksin-mulai" value="<?= date("Y-m-d"); ?>" <?= $btn_disable; ?>>
                             </div>
                             <div class="mb-3">
                                 <i><label for="kuota" class="form-label fs-5 text-muted">Kuota</label></i>
-                                <input type="number" required name="kuota" class="form-control border-0 border-bottom border-3 rounded-0" id="kuota" value="<?= date("Y-m-d"); ?>">
+                                <input type="number" required name="kuota" class="form-control border-0 border-bottom border-3 rounded-0" id="kuota" <?= $btn_disable; ?>>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <i><label for="namaVaksin" class="form-label fs-5 text-muted">Nama Vaksin</label></i>
-                                <select name="nama-vaksin" required class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="namaVaksin">
-                                    <option value="Sinopharm">Sinopharm</option>
-                                    <option value="Astrazheneca">Astrazheneca</option>
+                                <select name="nama-vaksin" required class="form-select border-0 border-bottom border-3 rounded-0" aria-label="Default select example" id="namaVaksin" <?= $btn_disable; ?>>
+                                    <option value="sinopharm" selected>Sinopharm</option>
+                                    <option value="astrazheneca">AstraZheneca</option>
+                                    <option value="sinovac">Sinovac</option>
+                                    <option value="moderna">Moderna</option>
+                                    <option value="pfizer">Pfizer</option>
+                                    <option value="novavax">Novavax</option>
+                                    <option value="sputnik-V">Sputnik-V</option>
+                                    <option value="janssen">Janssen</option>
+                                    <option value="convidencia">Convidencia</option>
+                                    <option value="zifivax">Zifivax</option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <i><label for="tanggal-vaksin-akhir" class="form-label fs-5 text-muted">Berakhirnya Vaksin</label></i>
-                                <input type="date" required name="tanggal-akhir" class="form-control border-0 border-bottom border-3 rounded-0" id="tanggal-vaksin-akhir" value="<?= date("Y-m-d"); ?>">
+                                <input type="date" required name="tanggal-akhir" class="form-control border-0 border-bottom border-3 rounded-0" id="tanggal-vaksin-akhir" value="<?= date("Y-m-d"); ?>" <?= $btn_disable; ?>>
                             </div>
                             <div class="d-grid gap-2 my-5">
                                 <button type="submit" class="btn bg-info py-2 fs-5" <?= $btn_disable; ?>>Agendakan</button>
@@ -54,11 +61,41 @@
         </div>
     </div>
 
-
+    <!-- Modal update data tanggal agenda -->
+    <div class="modal fade" id="updateTanggal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form action="<?= base_url('C_admin/ubah_agenda'); ?>" method="post">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Ubah Agenda vaksin</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="tanggal-vaksin-mulai" class="form-label">Tanggal Mulai Vaksin</label>
+                            <input type="date" required name="tanggal-mulai" class="form-control" id="tanggal-vaksin-mulai" value="<?= $tanggal_vaksin['tanggal_vaksin_mulai']; ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggal-vaksin-akhir" class="form-label">Tanggal Berakhir Vaksin</label>
+                            <input type="date" required name="tanggal-akhir" class="form-control" id="tanggal-vaksin-akhir" value="<?= $tanggal_vaksin['tanggal_vaksin_akhir']; ?>">
+                        </div>
+                        <div class="mb-3">
+                                <label for="kuota" class="form-label">Kuota</label>
+                                <input type="number" required name="kuota" class="form-control" id="kuota" value="<?= $tanggal_vaksin['kuota']; ?>">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-info">Update data</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 <?php else : ?>
     <div id="beranda-konten" data-click-sidebar="<?= $click_sidebar ?>" onclick="clickSidebar(1)">
-        <h1 class="text-primary">Vaksin <?= $vaksin_user_ke ?></h1>
+        <h1 class="text-primary">Vaksin <?= ucwords($vaksin_user_ke) ?></h1>
 
 
     </div>
@@ -118,11 +155,11 @@
                             <?php foreach ($getVaksinUser as $row) : ?>
                                 <tr>
                                     <td class="text-primary"><?= $row['nik_id_admin']; ?></td>
-                                    <td><?= $row['nama']; ?></td>
+                                    <td><?= ucwords($row['nama']); ?></td>
                                     <td><?= $row['tanggal_vaksin']; ?></td>
-                                    <td><?= $row['nama_vaksin']; ?></td>
-                                    <td><?= $row['jenis_kelamin']; ?></td>
-                                    <td><?= $row['perkerjaan']; ?></td>
+                                    <td><?= ucwords($row['nama_vaksin']); ?></td>
+                                    <td><?= ucwords($row['jenis_kelamin']); ?></td>
+                                    <td><?= ucwords($row['perkerjaan']); ?></td>
                                     <td>
                                         <form action="<?= base_url('C_admin/delete_uservaksin_by_nik/' . $row['id_vaksin']); ?>" method="post">
                                             <input type="hidden" name="vaksin-user-ke" value="<?= $vaksin_user_ke ?>">
@@ -159,7 +196,7 @@
                                                 <?php $tempt = $kedua[$i]["persen"] / $row["persen"] * 100; ?>
                                                 <div class="row mb-3 ps-3">
                                                     <div class="col-xl-3 col-md-3">
-                                                        <span><?= $kedua[$i]['perkerjaan']; ?></span>
+                                                        <span><?= ucwords($kedua[$i]['perkerjaan']); ?></span>
 
 
                                                     </div>
@@ -223,5 +260,8 @@
 
         </div>
     </div>
+
+
+
 
 <?php endif; ?>

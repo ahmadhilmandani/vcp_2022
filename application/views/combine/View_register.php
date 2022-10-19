@@ -13,7 +13,7 @@
                     </div>
                     <div class="mb-3">
                          <label for="Sandi" class="form-label fs-5">Sandi <span class="text-danger fs-6">*</span></label>
-                         <input type="text" name="sandi" class="form-control ps-4" id="Sandi" placeholder="Sandi" required>
+                         <input type="password" name="sandi" class="form-control ps-4" id="Sandi" placeholder="Sandi" required>
                     </div>
                     <div class="mb-3">
                          <label for="nama" class="form-label fs-5">Nama Lengkap <span class="text-danger fs-6">*</span></label>

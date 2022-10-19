@@ -10,12 +10,20 @@
 
         <!-- JIKA USER BELUM DAFTAR VAKSIN -->
     <?php elseif ($this->session->has_userdata('daftar_vaksin') && !($this->session->has_userdata('nomor_antrian'))) : ?>
-        <div class="p-5 border border-grey-light-custom" style="width: 100%; max-width: 600px;">
-            <h3 class="text-primary mb-4">Daftar Vaksin <?= $this->session->userdata('daftar_vaksin') ?></h3>
-            <form action="<?= base_url("C_dashboard/daftar_user") ?>" method="POST">
-                <input class="mb-4 border border-grey-custom rounded-1 text-grey-custom d-block w-75 p-2 " type="date" name="tanggal-vaksin" placeholder="Pilih tanggal" required>
-                <button class="btn bg-info px-4 py-2 d-block w-50">Daftar Vaksin</button>
-            </form>
+        <div class="col-lg-8">
+            <div class="card p-4">
+                <div class="card-body">
+                    <h3 class="text-primary mb-4">Daftar Vaksin <?= $this->session->userdata('daftar_vaksin') ?></h3>
+                    <form action="<?= base_url("C_dashboard/daftar_user") ?>" method="POST">
+                        <div class="col-9">
+                            <input class="mb-4 form-control" type="date" name="tanggal-vaksin" placeholder="Pilih tanggal" value="<?= date('Y-m-d'); ?>" required>
+                        </div>
+                        <div class="d-grid col-md-6 gap-2">
+                            <button class="btn bg-info" type="submit">Daftar Vaksin</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <!-- JIKA USER SUDAH DAFTAR VAKSIN -->
     <?php else : ?>
@@ -60,35 +68,47 @@
     <div id="beranda-konten" data-click-sidebar="<?= $data_click_sidebar ?>">
         <h1 class="text-primary">Vaksin <?= $vaksin_keberapa ?></h1>
     </div>
-    <div class="w-75 h-auto p-4 bg-white border-1 border-grey-custom">
+    <div class="col-lg-8">
         <?php if ($nama_vaksin) : ?>
             <div class="alert alert-success">
                 Terimakasih telah melakukan vaksin dosis <?php echo $nama_vaksin[0]["dosis"] ?>
             </div>
-            <div class="card">
+            <div class="card mb-5">
                 <div class="card-body p-5 position-relative">
-                    <p class="text-grey-custom fst-italic m-0 fw-light">Nama :</p>
-                    <p class="mb-3 fs-4"><?php echo $this->session->userdata("nama") ?></p>
-                    <p class="text-grey-custom fst-italic m-0 fw-light">Nama vaksin :</p>
-                    <p class="mb-3 fs-4"><?php echo $nama_vaksin[0]["nama_vaksin"] ?></p>
-                    <p class="text-grey-custom fst-italic m-0 fw-light">Tanggal vaksin :</p>
-                    <p class="fs-4"><?php echo date("d M Y", strtotime($nama_vaksin[0]["tanggal_vaksin"])) ?></p>
-                    <img src="<?= base_url("asset/img/centang.png") ?>" alt="centang" class="position-absolute" style="width: 200px; top:70px; right:150px;">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <p class="text-grey-custom fst-italic m-0 fw-light">Nama :</p>
+                            <p class="mb-3 fs-4"><?php echo $this->session->userdata("nama") ?></p>
+                            <p class="text-grey-custom fst-italic m-0 fw-light">Nama vaksin :</p>
+                            <p class="mb-3 fs-4"><?php echo $nama_vaksin[0]["nama_vaksin"] ?></p>
+                            <p class="text-grey-custom fst-italic m-0 fw-light">Tanggal vaksin :</p>
+                            <p class="fs-4"><?php echo date("d M Y", strtotime($nama_vaksin[0]["tanggal_vaksin"])) ?></p>
+                        </div>
+                        <div class="col-lg-5">
+                            <img src="<?= base_url("asset/img/centang.png") ?>" alt="centang"" width=" 100%">
+                        </div>
+                    </div>
                 </div>
             </div>
         <?php else : ?>
             <div class="alert alert-danger">
                 Anda belum melakukan vaksin
             </div>
-            <div class="card">
+            <div class="card mb-5">
                 <div class="card-body p-5 position-relative">
-                    <p class="text-grey-custom fst-italic m-0 fw-light">Nama :</p>
-                    <p class="mb-3 fs-4"><?php echo $this->session->userdata("nama") ?></p>
-                    <p class="text-grey-custom fst-italic m-0 fw-light">Nama vaksin :</p>
-                    <p class="mb-3 fs-4">-</p>
-                    <p class="text-grey-custom fst-italic m-0 fw-light">Tanggal vaksin :</p>
-                    <p class="fs-4">-</p>
-                    <img src="<?= base_url("asset/img/silang.png") ?>" alt="centang" class="position-absolute" style="width: 160px; top:70px; right:150px;">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <p class="text-grey-custom fst-italic m-0 fw-light">Nama :</p>
+                            <p class="mb-3 fs-4"><?php echo $this->session->userdata("nama") ?></p>
+                            <p class="text-grey-custom fst-italic m-0 fw-light">Nama vaksin :</p>
+                            <p class="mb-3 fs-4">-</p>
+                            <p class="text-grey-custom fst-italic m-0 fw-light">Tanggal vaksin :</p>
+                            <p class="fs-4">-</p>
+                        </div>
+                        <div class="col-lg-5">
+                            <img src="<?= base_url("asset/img/silang.png") ?>" alt="centang" width="100%">
+                        </div>
+                    </div>
                 </div>
             </div>
         <?php endif; ?>

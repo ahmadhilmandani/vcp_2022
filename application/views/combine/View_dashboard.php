@@ -1,7 +1,7 @@
 <section class="container-fluid">
 
-  <button class="btn btn-primary d-inline-block d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-    <i class="bi bi-list btn text-dark d-inline-block d-md-none position-relative" style="top: 15px"></i>
+  <button class="btn btn-primary d-inline-block d-md-none mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+    <i class="bi bi-list text-white"></i>
   </button>
 
 

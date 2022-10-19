@@ -55,7 +55,7 @@ class C_dashboard extends CI_Controller
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('C_dashboard');
+		redirect(base_url());
 	}
 
 	public function daftar_user()
