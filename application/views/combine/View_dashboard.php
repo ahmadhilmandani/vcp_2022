@@ -1,8 +1,13 @@
 <section class="container-fluid">
+  <div class="d-flex  align-items-center">
+    <button class="btn btn-primary d-inline-block d-md-none mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+      <i class="bi bi-list text-white"></i>
+    </button>
+    <span class="d-lg-none d-block ms-4 mt-2" style="width: 100px;">
+      <img src="<?= base_url("asset/img/logo_bg_hilang.png") ?>" alt="logo Ayok Vaksin" class="w-100 d-lg-none d-block">
+    </span>
+  </div>
 
-  <button class="btn btn-primary d-inline-block d-md-none mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-    <i class="bi bi-list text-white"></i>
-  </button>
 
 
 

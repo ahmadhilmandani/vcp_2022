@@ -1,3 +1,7 @@
+<span class="d-lg-block d-none d-flex align-items-center mt-5 ps-4" style="width: 150px;">
+  <img src="<?= base_url("asset/img/logo_bg_hilang.png") ?>" alt="logo Ayok Vaksin" class="w-100 d-lg-block d-none">
+</span>
+
 <div class="d-flex align-items-center mt-5 ps-4 py-2 border-5 border-start border-primary">
   <i class="bi bi-person-circle fs-4 text-secondary"></i>
   <a href="<?= base_url("C_dashboard/dashboard_user") ?>" class="text-secondary fw-bold text-decoration-none ms-3">Beranda</a>
