@@ -9,7 +9,7 @@
                     <h1 class="mb-3">Register</h1>
                     <div class="mb-3">
                          <label for="NIK" class="form-label fs-5">NIK <span class="text-danger fs-6">*</span></label>
-                         <input type="text" name="NIK" class="form-control ps-4" id="NIK" placeholder="NIK" required>
+                         <input type="text" name="nik" class="form-control ps-4" id="NIK" placeholder="NIK" required>
                     </div>
                     <div class="mb-3">
                          <label for="Sandi" class="form-label fs-5">Sandi <span class="text-danger fs-6">*</span></label>
