@@ -3,6 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class C_dashboard extends CI_Controller
 {
+
+	// public function __construct()
+	// {
+	// 	parent::__construct();
+	
+		
+	// }
 	public function index()
 	{
 		if (isset($_POST["login"])) {
@@ -29,6 +36,10 @@ class C_dashboard extends CI_Controller
 
 	public function dashboard_user($vaksin_keberapa = 0)
 	{
+		if(!$this->session->userdata("nik_id_admin")){
+			redirect("C_dashboard");
+		}
+
 		$this->load->model("M_tabel_user");
 		$data["judul"] = "Dashboard User";
 		$data["vaksin_keberapa"] = $vaksin_keberapa;
@@ -60,6 +71,10 @@ class C_dashboard extends CI_Controller
 
 	public function daftar_user()
 	{
+		if(!$this->session->userdata("nik_id_admin")){
+			redirect("C_dashboard");
+		}
+		
 		$this->load->model("M_daftar");
 		$this->load->model("M_login");
 		$this->load->library("Alert_lib");
