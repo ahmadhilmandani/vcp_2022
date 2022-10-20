@@ -63,7 +63,6 @@ class M_login extends CI_Model
                 }
                 // jika user BELUM DAFTAR
                 else {
-                    // kayanya ini bisa dijadikan fungsi deh
                     $this->db->select('dosis, nama_vaksin, tanggal_vaksin_mulai, tanggal_vaksin_akhir');
                     $this->db->where("nik_user", "-");
                     $query = $this->db->get("vaksin_on_progress", 1);
