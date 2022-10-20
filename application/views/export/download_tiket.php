@@ -10,11 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous" defer></script>
-
     <style>
-
         .card{
             border: 1px solid #98A8F8;
             font-family: Arial, Helvetica, sans-serif;
@@ -26,6 +22,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
         }
         .fst-italic{
             font-style: italic;
+            color: #fefe;
+            font-weight: 100;
         }
     </style>
 
@@ -34,10 +32,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <body>
     <div class="card">
         <div class="card-body">
-            <h3 class="text-primary mb-4">Tiket Vaksin <?= $this->session->userdata('dosis') ?></h3>
+            <h1 style="font-size: 34px; color:#1746A2;">Tiket Vaksin <?= $this->session->userdata('dosis') ?></h1>
             <div class="container-fluid">
                 <div>
-                    <h4 class="h6 fst-italic text-grey-custom fw-light">NIK</h4>
+                    <h4 class="fw-light">NIK</h4>
                     <p class=""><?= $this->session->userdata('nik_id_admin') ?></p>
                 </div>
                 <div class="row position-relative">
