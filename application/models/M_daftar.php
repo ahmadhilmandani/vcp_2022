@@ -7,13 +7,12 @@ class M_daftar extends CI_Model
     {
         $this->db->select("nomor_antrian");
         $this->db->where("tanggal_vaksin", $this->input->post("tanggal-vaksin"));
-        $this->db->order_by("nomor_antrian","DESC");
-        $cek_nomor_antrian = $this->db->get("vaksin_on_progress",1);
-        if($cek_nomor_antrian->num_rows() > 0){
+        $this->db->order_by("nomor_antrian", "DESC");
+        $cek_nomor_antrian = $this->db->get("vaksin_on_progress", 1);
+        if ($cek_nomor_antrian->num_rows() > 0) {
             $cek_nomor_antrian = $cek_nomor_antrian->result_array();
             $nomor_antrian = intval($cek_nomor_antrian[0]["nomor_antrian"])  + 1;
-        }
-        else{
+        } else {
             $nomor_antrian = 1;
         }
         $data = [
@@ -25,11 +24,18 @@ class M_daftar extends CI_Model
             "tanggal_vaksin" => $this->input->post("tanggal-vaksin"),
             "nomor_antrian" => $nomor_antrian
         ];
-        $query =  $this->db->insert("vaksin_on_progress", $data);
-        if ($this->db->affected_rows() == 1) {
-            return [TRUE, "Anda secara resmi terdaftar! Cek tiket untuk informasi selengkapnya!"];
+        $cekkuota = $this->db->get_where('vaksin_on_progress', ['nik_user' => '-'])->row_array();
+        $kuota = $cekkuota['kuota'];
+        $total = $this->db->query('SELECT COUNT(*) as "totaluser" FROM vaksin_on_progress WHERE nik_user != "-"')->row_array();
+        if ($total['totaluser'] >= $kuota) {
+            return [FALSE, "Maaf Kuota penuh!"];
         } else {
-            return [FALSE, "Gagal! Mohon ulangi lagi!"];
+            $this->db->insert("vaksin_on_progress", $data);
+            if ($this->db->affected_rows() == 1) {
+                return [TRUE, "Anda secara resmi terdaftar! Cek tiket untuk informasi selengkapnya!"];
+            } else {
+                return [FALSE, "Gagal! Mohon ulangi lagi!"];
+            }
         }
     }
 
