@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Okt 2022 pada 02.26
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 7.4.27
+-- Generation Time: Oct 20, 2022 at 02:16 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -39,7 +39,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`nik_id_admin`, `sandi`, `nama`, `tanggal_lahir`, `jenis_kelamin`, `perkerjaan`, `alamat`, `is_admin`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `user` (`nik_id_admin`, `sandi`, `nama`, `tanggal_lahir`, `jenis_kel
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `vaksin`
+-- Table structure for table `vaksin`
 --
 
 CREATE TABLE `vaksin` (
@@ -66,18 +66,16 @@ CREATE TABLE `vaksin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `vaksin`
+-- Dumping data for table `vaksin`
 --
 
 INSERT INTO `vaksin` (`id_vaksin`, `nik_user`, `dosis`, `nama_vaksin`, `nama_user`, `tanggal_vaksin`, `perkerjaan`) VALUES
-(1, '3214223312340002', 'pertama', 'Sinovac-2', 'Ahmad Hilman Dani', '2022-10-06', 'PNS'),
-(2, '3214223312340003', 'pertama', 'Sinovac-2', 'Cagiva Chaedar BY', '2022-10-06', 'PNS'),
 (10, '3529121208020001', 'Pertama', 'Sinopharm', 'Dian', '2022-10-19', 'Guru');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `vaksin_on_progress`
+-- Table structure for table `vaksin_on_progress`
 --
 
 CREATE TABLE `vaksin_on_progress` (
@@ -94,50 +92,43 @@ CREATE TABLE `vaksin_on_progress` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data untuk tabel `vaksin_on_progress`
+-- Dumping data for table `vaksin_on_progress`
 --
 
 INSERT INTO `vaksin_on_progress` (`nik_user`, `nama_user`, `dosis`, `nama_vaksin`, `tempat_vaksin`, `tanggal_vaksin`, `tanggal_vaksin_mulai`, `nomor_antrian`, `tanggal_vaksin_akhir`, `kuota`) VALUES
-('-', '-', 'Pertama', 'Sinopharm', 'puskesmas pamolokan', '0000-00-00', '2022-10-15', 1, '2022-10-29', 23);
+('-', '-', 'pertama', 'sinopharm', 'puskesmas pamolokan', '0000-00-00', '2022-10-19', 0, '2022-10-22', 50);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`nik_id_admin`);
 
 --
--- Indeks untuk tabel `vaksin`
+-- Indexes for table `vaksin`
 --
 ALTER TABLE `vaksin`
   ADD PRIMARY KEY (`id_vaksin`);
 
 --
--- Indeks untuk tabel `vaksin_on_progress`
+-- Indexes for table `vaksin_on_progress`
 --
 ALTER TABLE `vaksin_on_progress`
-  ADD PRIMARY KEY (`nik_user`),
-  ADD UNIQUE KEY `nomor_antrian` (`nomor_antrian`);
+  ADD PRIMARY KEY (`nik_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `vaksin`
+-- AUTO_INCREMENT for table `vaksin`
 --
 ALTER TABLE `vaksin`
   MODIFY `id_vaksin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT untuk tabel `vaksin_on_progress`
---
-ALTER TABLE `vaksin_on_progress`
-  MODIFY `nomor_antrian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
