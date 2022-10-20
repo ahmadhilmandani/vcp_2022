@@ -7,7 +7,7 @@ class M_login extends CI_Model
     public function index()
     {
         $this->db->where("nik_id_admin", $this->input->post("nik"));
-        $this->db->where("sandi", $this->input->post("sandi"));
+        // $this->db->where("sandi", $this->input->post("sandi"));
         $query =  $this->db->get("user");
 
         if ($query->num_rows() > 0) {
@@ -24,6 +24,7 @@ class M_login extends CI_Model
                     "is_admin" => $row->is_admin
                 ];
             };
+            if(password_verify($this->input->post("sandi"), $session["sandi"]))
             return $this->session->set_userdata($session);
         } else {
             return false;

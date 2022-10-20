@@ -43,7 +43,7 @@ class M_daftar extends CI_Model
     {
         $data = [
             "nik_id_admin" => $this->input->post("nik"),
-            "sandi" => $this->input->post("sandi"),
+            "sandi" => password_hash(($this->input->post("sandi")),PASSWORD_DEFAULT),
             "nama" => $this->input->post("nama"),
             "tanggal_lahir" => $this->input->post("tanggal_lahir"),
             "jenis_kelamin" => $this->input->post("jenis_kelamin"),
