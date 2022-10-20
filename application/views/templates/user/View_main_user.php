@@ -28,52 +28,55 @@
         </div>
         <!-- JIKA USER SUDAH DAFTAR VAKSIN -->
     <?php else : ?>
-        <p>
-            <?php if (time() < (strtotime($this->session->userdata('tanggal_vaksin')))) : ?>
+        <?php if (time() < (strtotime($this->session->userdata('tanggal_vaksin')))) : ?>
+            <p>
                 <?= date('d', (strtotime($this->session->userdata('tanggal_vaksin'))) - time()) ?> Hari menuju Vaksin
-            <?php else : ?>
-        <p class="text-danger">Anda Telat Vaksin!</p>
-    <?php endif ?>
-    </p>
-    <div class="p-5 border border-grey-light-custom mb-4" style="width: 100%; max-width: 600px;">
-        <h3 class="text-primary mb-4">Tiket Vaksin <?= $this->session->userdata('dosis') ?></h3>
-        <div class="container-fluid">
-            <div>
-                <h6 class="h6 fst-italic text-grey-custom fw-light">NIK</h6>
-                <p class=""><?= $this->session->userdata('nik_id_admin') ?></p>
-            </div>
-            <div class="row position-relative">
-                <div class="col">
-                    <h6 class="h6 fst-italic text-grey-custom fw-light">Nama</h6>
-                    <p class=""><?= $this->session->userdata('nama') ?></p>
-                </div>
+            </p>
+        <?php else : ?>
+            <p class="text-danger">
+                Anda Telat Vaksin!
+            </p>
+        <?php endif ?>
 
-                <div class="col position-absolute top-0 end-0">
-                    <h6 class="h6 fst-italic text-grey-custom fw-light text-end">Nomor Antrian</h6>
-                    <p class="text-end" style="font-size: 50px;">
-                        <?php
-                        if ($this->session->userdata('nomor_antrian') < 10) {
-                            echo '00';
-                        } else if ($this->session->userdata('nomor_antrian') >= 10 && $this->session->userdata('nomor_antrian') < 100) {
-                            echo '0';
-                        }
-                        echo $this->session->userdata('nomor_antrian') - 1;
-                        ?>
-                    </p>
+        <div class="p-5 border border-grey-light-custom mb-4" style="width: 100%; max-width: 600px;">
+            <h3 class="text-primary mb-4">Tiket Vaksin <?= $this->session->userdata('dosis') ?></h3>
+            <div class="container-fluid">
+                <div>
+                    <h6 class="h6 fst-italic text-grey-custom fw-light">NIK</h6>
+                    <p class=""><?= $this->session->userdata('nik_id_admin') ?></p>
                 </div>
-            </div>
-            <div>
-                <h6 class="h6 fst-italic text-grey-custom fw-light">Tanggal</h6>
-                <p class=""><?= $this->session->userdata('tanggal_vaksin') ?></p>
-            </div>
-            <div>
-                <h6 class="h6 fst-italic text-grey-custom fw-light">Temppat</h6>
-                <p class=""><?= $this->session->userdata('tempat_vaksin') ?></p>
+                <div class="row position-relative">
+                    <div class="col">
+                        <h6 class="h6 fst-italic text-grey-custom fw-light">Nama</h6>
+                        <p class=""><?= $this->session->userdata('nama') ?></p>
+                    </div>
+
+                    <div class="col position-absolute top-0 end-0">
+                        <h6 class="h6 fst-italic text-grey-custom fw-light text-end">Nomor Antrian</h6>
+                        <p class="text-end" style="font-size: 50px;">
+                            <?php
+                            if ($this->session->userdata('nomor_antrian') < 10) {
+                                echo '00';
+                            } else if ($this->session->userdata('nomor_antrian') >= 10 && $this->session->userdata('nomor_antrian') < 100) {
+                                echo '0';
+                            }
+                            echo $this->session->userdata('nomor_antrian');
+                            ?>
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <h6 class="h6 fst-italic text-grey-custom fw-light">Tanggal</h6>
+                    <p class=""><?= $this->session->userdata('tanggal_vaksin') ?></p>
+                </div>
+                <div>
+                    <h6 class="h6 fst-italic text-grey-custom fw-light">Temppat</h6>
+                    <p class=""><?= $this->session->userdata('tempat_vaksin') ?></p>
+                </div>
             </div>
         </div>
-    </div>
-    <button class="btn bg-info px-4 py-2 d-block w-50 mb-5">Download Tiket Vaksin</button>
-<?php endif; ?>
+        <button class="btn bg-info px-4 py-2 d-block w-50 mb-5">Download Tiket Vaksin</button>
+    <?php endif; ?>
 
 <?php else : ?>
     <div id="beranda-konten" data-click-sidebar="<?= $data_click_sidebar ?>">

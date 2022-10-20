@@ -82,8 +82,8 @@ class M_vaksin_on extends CI_Model
                 'nomor_antrian' => [
                     'type' => 'INT',
                     'constraint' => '11',
-                    'auto_increment' => TRUE,
-                    'unique' => TRUE,
+                    // 'auto_increment' => TRUE,
+                    // 'unique' => TRUE,
                 ],
                 'tanggal_vaksin_akhir' => [
                     'type' => 'DATE'
