@@ -56,7 +56,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 <div style="margin-bottom: 24px; position:relative;">
                     <div style="width: 150px;">
                         <h4 class="h6 fst-italic text-grey-custom fw-light" style="margin-bottom: 8px;">Nama</h4>
-                        <p class="nama_user"><?= $this->session->userdata('nama') ?> CHAEDAR BEY LIRNA HIDAYAT NUR KHOLISAH</p>
+                        <p class="nama_user"><?= $this->session->userdata('nama') ?></p>
                     </div>
 
                     <div style="position:absolute; top:0; right:0;">
