@@ -29,13 +29,20 @@
         <!-- JIKA USER SUDAH DAFTAR VAKSIN -->
     <?php else : ?>
         <?php if (time() < (strtotime($this->session->userdata('tanggal_vaksin')))) : ?>
-            <p>
-                <?= date('d', (strtotime($this->session->userdata('tanggal_vaksin'))) - time()) ?> Hari menuju Vaksin
-            </p>
+            <div class="col-lg-7">
+                <div class="alert alert-info">
+                    <?= date('d', (strtotime($this->session->userdata('tanggal_vaksin'))) - time()) ?> Hari menuju Vaksin
+                </div>
+            </div>
+
         <?php else : ?>
-            <p class="text-danger">
-                Anda Telat Vaksin!
-            </p>
+
+            <div class="col-lg-7">
+                <div class="alert alert-danger">
+                    Anda Telat Vaksin!
+                </div>
+            </div>
+
         <?php endif ?>
 
         <div class="p-5 border border-grey-light-custom mb-4" style="width: 100%; max-width: 600px;">
