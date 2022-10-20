@@ -24,8 +24,11 @@ class M_login extends CI_Model
                     "is_admin" => $row->is_admin
                 ];
             };
-            if(password_verify($this->input->post("sandi"), $session["sandi"]))
-            return $this->session->set_userdata($session);
+            if(password_verify($this->input->post("sandi"), $row->sandi)){
+                return $this->session->set_userdata($session);
+            }else{
+                return false;
+            }
         } else {
             return false;
         }
