@@ -5,15 +5,23 @@ class C_dashboard extends CI_Controller
 {
 	public function index()
 	{
+		$this->load->model('M_vaksin_on');
+		if ($this->db->table_exists("vaksin_on_progress") === TRUE) {
+			$tanggalAkhirAgenda = $this->M_vaksin_on->get_agenda_vaksin();
+			if (time() > strtotime($tanggalAkhirAgenda['tanggal_vaksin_akhir'])) {
+				$this->M_vaksin_on->droptable_vaksin_on_progress();
+				redirect(base_url());
+			}
+		}
 		if (isset($_POST["login"])) {
 			$this->load->model("M_login");
 			$data["cek_user_login"] = $this->M_login->index();
 
 			if ($data["cek_user_login"] !== false) {
-				if($this->session->userdata('is_admin') == 0){
+				if ($this->session->userdata('is_admin') == 0) {
 					$this->M_login->cek_tabel_vaksin();
 					redirect("C_dashboard/dashboard_user");
-				}else{
+				} else {
 					redirect("C_admin/admin");
 				}
 			} else {
@@ -29,7 +37,7 @@ class C_dashboard extends CI_Controller
 
 	public function dashboard_user($vaksin_keberapa = 0)
 	{
-		if(!$this->session->userdata("nik_id_admin")){
+		if (!$this->session->userdata("nik_id_admin")) {
 			redirect("C_dashboard");
 		}
 
@@ -64,17 +72,17 @@ class C_dashboard extends CI_Controller
 
 	public function daftar_user()
 	{
-		if(!$this->session->userdata("nik_id_admin")){
+		if (!$this->session->userdata("nik_id_admin")) {
 			redirect("C_dashboard");
 		}
-		
+
 		$this->load->model("M_daftar");
 		$this->load->model("M_login");
 		$this->load->library("Alert_lib");
 
 		$daftar_vaksin = $this->M_daftar->index();
 		$this->alert_lib->alert_success_or_error($daftar_vaksin[0], $daftar_vaksin[1]);
-		
+
 		$this->session->unset_userdata('tidak_vaksin');
 		$this->session->unset_userdata('daftar_vaksin');
 		$this->M_login->cek_tabel_vaksin();

@@ -18,15 +18,14 @@ class C_admin extends CI_Controller
         $data['tanggal_vaksin'] = $cekagenda;
 
         if ($cekagenda) {
-            $data['agenda_vaksin'] = "<div class='alert alert-warning' role='alert'>Sedang ada agenda vaksin dosis <b>" . ucwords($cekagenda['dosis']) . "</b> s.d tanggal <b>" . date('d M Y', strtotime($cekagenda['tanggal_vaksin_akhir'])) . "</b> 
-            <button type='button' class='btn btn-warning' data-bs-toggle='modal' data-bs-target='#updateTanggal'>
-            <i class='bi bi-pencil-square'></i> Ubah agenda
-            </button><br>
-            Sisa kuota vaksin : <b>" . ucwords($cekagenda['kuota']) . "</b><br>
+            $data['agenda_vaksin'] = "<div class='alert alert-primary' role='alert'>Sedang ada agenda vaksin dosis <b>" . ucwords($cekagenda['dosis']) . "</b> s.d tanggal <b>" . date('d M Y', strtotime($cekagenda['tanggal_vaksin_akhir'])) . "</b> 
+            . <br>Sisa kuota vaksin : <b>" . ucwords($cekagenda['kuota']) . "</b><br>
             Jenis vaksin : <b>" . ucwords($cekagenda['nama_vaksin']) . "</b><br>
             </div>";
             $data['btn_disable'] = 'disabled';
+            $data['btn_none'] = '';
         } else {
+            $data['btn_none'] = 'd-none';
             $data['btn_disable'] = '';
             $data['agenda_vaksin'] = "<div class='alert alert-danger' role='alert'><b>Belum ada agenda vaksin</b></div>";
         }
@@ -100,8 +99,28 @@ class C_admin extends CI_Controller
     public function ubah_agenda()
     {
         $this->load->library("Alert_lib");
-        $result_update_agenda = $this->M_vaksin_on->update_agenda_vaksin();
+        $cekagenda = $this->M_vaksin_on->get_agenda_vaksin();
+        if($this->db->table_exists("vaksin_on_progress") === TRUE){
+            if($cekagenda){
+                $result_update_agenda = $this->M_vaksin_on->update_agenda_vaksin();
+            }
+        }
         $this->alert_lib->alert_success_or_error($result_update_agenda[0], $result_update_agenda[1]);
         redirect('C_admin/admin/');
+    }
+
+    public function laporan_pdf(){
+        $data['tiketVaksin'] = [
+            'nama' => 'tiket saya',
+            'tanggal' => date('d M Y')
+        ];
+    
+        $this->load->library('pdf');
+    
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "tiketVaksin.pdf";
+        $this->pdf->load_view('export/download_tiket', $data);
+    
+    
     }
 }

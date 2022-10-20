@@ -70,12 +70,12 @@
                     <p class=""><?= $this->session->userdata('tanggal_vaksin') ?></p>
                 </div>
                 <div>
-                    <h6 class="h6 fst-italic text-grey-custom fw-light">Temppat</h6>
+                    <h6 class="h6 fst-italic text-grey-custom fw-light">Tempat</h6>
                     <p class=""><?= $this->session->userdata('tempat_vaksin') ?></p>
                 </div>
             </div>
         </div>
-        <button class="btn bg-info px-4 py-2 d-block w-50 mb-5">Download Tiket Vaksin</button>
+        <a href="<?= base_url('C_admin/laporan_pdf'); ?>" class="btn bg-info px-4 py-2 d-block w-50 mb-5">Download Tiket Vaksin</a>
     <?php endif; ?>
 
 <?php else : ?>

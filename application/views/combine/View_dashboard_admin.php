@@ -1,9 +1,12 @@
 <section class="container-fluid">
-
-    <button class="btn btn-primary d-inline-block d-md-none mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-        <i class="bi bi-list text-white"></i>
-    </button>
-
+    <div class="d-flex align-items-center">
+        <button class="btn btn-primary d-inline-block d-md-none mt-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+            <i class="bi bi-list text-white"></i>
+        </button>
+        <span class="d-lg-none d-block ms-4 mt-2" style="width: 100px;">
+            <img src="<?= base_url("asset/img/logo_bg_hilang.png") ?>" alt="logo Ayok Vaksin" class="w-100 d-lg-none d-block">
+        </span>
+    </div>
     <div class="row vh-100 bg-white-custom">
 
         <div class="offcanvas-start p-0 col-xl-2 col-md-3 border-1 border-end border-grey-light-custom" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
@@ -50,29 +53,28 @@
         $('.nav-statistik').addClass('text-muted')
         $(this).removeClass('text-muted')
     })
-    
 </script>
 <!-- script chart js -->
 
 <script>
-const ctx = document.getElementById('myChart');
-const myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ['Dewasa (31-55)', 'Remaja(18-30)', 'Anak(6-17)', 'Lansia(>55)'],
-        datasets: [{
-            label: '# of Votes',
-            data: <?= json_encode($umur_user);?>,
-            backgroundColor: [
-                '#3392F4',
-                '#6CCFE7',
-                '#76ECF4',
-                '#D1D1D1',
-            ]
-        }]
-    },
-    options: {
-        
-    }
-});
+    const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Dewasa (31-55)', 'Remaja(18-30)', 'Anak(6-17)', 'Lansia(>55)'],
+            datasets: [{
+                label: '# of Votes',
+                data: <?= json_encode($umur_user); ?>,
+                backgroundColor: [
+                    '#3392F4',
+                    '#6CCFE7',
+                    '#76ECF4',
+                    '#D1D1D1',
+                ]
+            }]
+        },
+        options: {
+
+        }
+    });
 </script>

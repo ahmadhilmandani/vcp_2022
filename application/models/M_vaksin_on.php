@@ -48,6 +48,11 @@ class M_vaksin_on extends CI_Model
         return $this->db->get('vaksin_on_progress')->result_array();
     }
 
+    public function droptable_vaksin_on_progress(){
+        $this->load->dbforge();
+        $this->dbforge->drop_table('vaksin_on_progress');
+    }
+
     public function isExist_tb_vaksin_on_progress()
     {
         $this->load->dbforge();
@@ -82,8 +87,6 @@ class M_vaksin_on extends CI_Model
                 'nomor_antrian' => [
                     'type' => 'INT',
                     'constraint' => '11',
-                    // 'auto_increment' => TRUE,
-                    // 'unique' => TRUE,
                 ],
                 'tanggal_vaksin_akhir' => [
                     'type' => 'DATE'
