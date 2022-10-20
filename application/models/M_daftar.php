@@ -7,6 +7,7 @@ class M_daftar extends CI_Model
     {
         $this->db->select("nomor_antrian");
         $this->db->where("tanggal_vaksin", $this->input->post("tanggal-vaksin"));
+        $this->db->order_by("nomor_antrian","DESC");
         $cek_nomor_antrian = $this->db->get("vaksin_on_progress",1);
         if($cek_nomor_antrian->num_rows() > 0){
             $cek_nomor_antrian = $cek_nomor_antrian->result_array();
