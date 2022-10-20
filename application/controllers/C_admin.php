@@ -109,7 +109,7 @@ class C_admin extends CI_Controller
         redirect('C_admin/admin/');
     }
 
-    public function laporan_pdf(){
+    public function download_tiket(){
         $data['tiketVaksin'] = [
             'nama' => 'tiket saya',
             'tanggal' => date('d M Y')
@@ -117,7 +117,7 @@ class C_admin extends CI_Controller
     
         $this->load->library('pdf');
     
-        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->setPaper('A6', 'potrait');
         $this->pdf->filename = "tiketVaksin.pdf";
         $this->pdf->load_view('export/download_tiket', $data);
     

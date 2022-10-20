@@ -2,6 +2,7 @@
 
 use Dompdf\Dompdf;
 
+
 class Pdf extends Dompdf
 {
 
@@ -25,5 +26,6 @@ class Pdf extends Dompdf
         $this->render();
         // Output the generated PDF to Browser
         $this->stream($this->filename, array("Attachment" => false));
+        
     }
 }

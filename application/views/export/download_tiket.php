@@ -6,24 +6,39 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 <head>
     <meta charset="utf-8">
-    <title><?= $judul ?></title>
+    <title>Donwload Tiket</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../../../asset/img/logo_bg_hilang.png" type="image/icon type">
 
     <style>
-        .card{
-            border: 1px solid #98A8F8;
-            font-family: Arial, Helvetica, sans-serif;
-            padding: 10px;
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .card {
+            padding: 30px;
             border-radius: 10px;
         }
-        .text-primary{
-            color: #1746A2;
+
+        .text-primary {
+
+            color: #3392F4;
         }
-        .fst-italic{
-            font-style: italic;
-            color: #fefe;
+
+        .fst-italic {
+            color: #B2B2B2;
             font-weight: 100;
+            font-style: italic;
+        }
+
+        .nama_user {
+            max-height: 60px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
     </style>
 
@@ -32,21 +47,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <body>
     <div class="card">
         <div class="card-body">
-            <h1 style="font-size: 34px; color:#1746A2;">Tiket Vaksin <?= $this->session->userdata('dosis') ?></h1>
+            <h1 class="text-primary" style="font-size: 34px; margin-bottom: 24px;">Tiket Vaksin <?= $this->session->userdata('dosis') ?></h1>
             <div class="container-fluid">
-                <div>
-                    <h4 class="fw-light">NIK</h4>
+                <div style="margin-bottom: 24px;">
+                    <h4 class="fst-italic" style="margin-bottom: 8px;">NIK</h4>
                     <p class=""><?= $this->session->userdata('nik_id_admin') ?></p>
                 </div>
-                <div class="row position-relative">
-                    <div class="col">
-                        <h4 class="h6 fst-italic text-grey-custom fw-light">Nama</h4>
-                        <p class=""><?= $this->session->userdata('nama') ?></p>
+                <div style="margin-bottom: 24px; position:relative;">
+                    <div style="width: 150px;">
+                        <h4 class="h6 fst-italic text-grey-custom fw-light" style="margin-bottom: 8px;">Nama</h4>
+                        <p class="nama_user"><?= $this->session->userdata('nama') ?> CHAEDAR BEY LIRNA HIDAYAT NUR KHOLISAH</p>
                     </div>
 
-                    <div class="col position-absolute top-0 end-0">
-                        <h4 class="h6 fst-italic text-grey-custom fw-light text-end">Nomor Antrian</h4>
-                        <p class="text-end" style="font-size: 50px; color: #1746A2;">
+                    <div style="position:absolute; top:0; right:0;">
+                        <h4 class="fst-italic" style="text-align: right; margin-bottom: 8px;">Nomor Antrian</h4>
+                        <p class="text-primary" style="font-size: 60px;">
                             <?php
                             if ($this->session->userdata('nomor_antrian') < 10) {
                                 echo '00';
@@ -58,12 +73,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         </p>
                     </div>
                 </div>
-                <div>
-                    <h4 class="h6 fst-italic text-grey-custom fw-light">Tanggal</h4>
+                <div style="margin-bottom: 24px;">
+                    <h4 class="h6 fst-italic text-grey-custom fw-light" style="margin-bottom: 8px;">Tanggal</h4>
                     <p class=""><?= $this->session->userdata('tanggal_vaksin') ?></p>
                 </div>
-                <div>
-                    <h4 class="h6 fst-italic text-grey-custom fw-light">Tempat</h4>
+                <div style="margin-bottom: 24px;">
+                    <h4 class="h6 fst-italic text-grey-custom fw-light" style="margin-bottom: 8px;">Tempat</h4>
                     <p class=""><?= $this->session->userdata('tempat_vaksin') ?></p>
                 </div>
             </div>

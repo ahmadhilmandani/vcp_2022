@@ -75,7 +75,7 @@
                 </div>
             </div>
         </div>
-        <a href="<?= base_url('C_admin/laporan_pdf'); ?>" class="btn bg-info px-4 py-2 d-block w-50 mb-5">Download Tiket Vaksin</a>
+        <a href="<?= base_url('C_admin/download_tiket'); ?>" class="btn bg-info px-4 py-2 d-block w-50 mb-5">Download Tiket Vaksin</a>
     <?php endif; ?>
 
 <?php else : ?>
