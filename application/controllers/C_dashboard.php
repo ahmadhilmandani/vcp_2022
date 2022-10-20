@@ -25,7 +25,9 @@ class C_dashboard extends CI_Controller
 					redirect("C_admin/admin");
 				}
 			} else {
-				redirect("C_dashboard/index");
+				$this->load->library("Alert_lib");
+				$this->alert_lib->alert_success_or_error(false, 'NIK atau Password salah!');
+				redirect(base_url());
 			}
 		} else {
 			$data["judul"] = "Selamat datang di web kami!";
