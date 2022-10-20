@@ -12,7 +12,7 @@ class C_admin extends CI_Controller
     public function admin($vaksin_user = 0)
     {
         if (!$this->session->userdata("nik_id_admin")) {
-			redirect("C_dashboard");
+			redirect(base_url());
 		}
         $this->M_vaksin_on->isExist_tb_vaksin_on_progress();
 
